@@ -43,6 +43,30 @@ class Job extends Model
     }
 
 
+    public function gender()
+    {
+        return $this->belongsTo(AttributeValue::class, 'gender_id', 'id');
+    }
+
+
+    public function experience()
+    {
+        return $this->belongsTo(AttributeValue::class, 'experience_id', 'id');
+    }
+
+
+    public function work_time()
+    {
+        return $this->belongsTo(AttributeValue::class, 'work_time_id', 'id');
+    }
+
+
+    public function education()
+    {
+        return $this->belongsTo(AttributeValue::class, 'education_id', 'id');
+    }
+
+
     public function location()
     {
         return $this->belongsTo(Location::class);

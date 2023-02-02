@@ -25,6 +25,8 @@ return new class extends Migration
             $table->string('full_name_en')->nullable();
             $table->string('slug')->unique();
             $table->string('image')->nullable();
+            $table->string('phone');
+            $table->string('email')->nullable();
             $table->unsignedDouble('salary')->default(0);
             $table->unsignedInteger('viewed')->default(0);
             $table->unsignedInteger('favorites')->default(0);

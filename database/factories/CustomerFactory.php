@@ -17,7 +17,7 @@ class CustomerFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'name' => fake()->unique()->name(),
         ];
     }
 }

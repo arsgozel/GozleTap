@@ -14,7 +14,6 @@ return new class extends Migration
     public function up()
     {
         Schema::table('customers', function (Blueprint $table) {
-            $table->renameColumn('phone', 'username');
             $table->string('password');
             $table->rememberToken();
         });
@@ -28,7 +27,6 @@ return new class extends Migration
     public function down()
     {
         Schema::table('customers', function (Blueprint $table) {
-            $table->renameColumn('username', 'phone');
             $table->dropColumn('password');
             $table->dropRememberToken();
         });

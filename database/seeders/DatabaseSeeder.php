@@ -3,22 +3,37 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\Job;
+use App\Models\Customer;
+use App\Models\Verification;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
 {
-    /**
-     * Seed the application's database.
-     *
-     * @return void
-     */
+
     public function run()
     {
-        // \App\Models\User::factory(10)->create();
+        $this->call([
+            CategorySeeder::class,
+            UserSeeder::class,
+            LocationSeeder::class,
+            AttributeValueSeeder::class,
+        ]);
 
-        // \App\Models\User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
+
+        for ($i = 0; $i < 25; $i++) {
+            $verification = Verification::factory()->create();
+            if ($verification->status) {
+                Customer::factory()
+                    ->create([
+                        'username' => $verification->phone,
+                        'password' => bcrypt($verification->code),
+                        'created_at' => $verification->created_at,
+                    ]);
+            }
+        }
+
+        Job::factory()->count(80)->create();
+
     }
 }

@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('product_attribute_value', function (Blueprint $table) {
+        Schema::create('job_attribute_value', function (Blueprint $table) {
             $table->unsignedBigInteger('job_id')->index();
             $table->foreign('job_id')->references('id')->on('jobs')->cascadeOnDelete();
             $table->unsignedBigInteger('attribute_value_id')->index();
