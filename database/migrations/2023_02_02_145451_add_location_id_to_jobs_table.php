@@ -13,12 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('users', function (Blueprint $table) {
-            $table->uuid('id');
-            $table->string('name');
-            $table->string('username')->unique();
-            $table->string('password');
-            $table->rememberToken();
+        Schema::table('jobs', function (Blueprint $table) {
+            $table->unsignedBigInteger('location_id')->index()->default(1)->after('customer_id');
+            $table->foreign('location_id')->references('id')->on('locations')->cascadeOnDelete();
         });
     }
 
@@ -29,6 +26,8 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('users');
+        Schema::table('jobs', function (Blueprint $table) {
+            $table->dropColumn('location_id');
+        });
     }
 };
