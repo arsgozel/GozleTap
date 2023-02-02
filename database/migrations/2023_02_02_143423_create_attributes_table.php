@@ -15,7 +15,10 @@ return new class extends Migration
     {
         Schema::create('attributes', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
+            $table->string('name_tm');
+            $table->string('name_en')->nullable();
+            $table->boolean('job_name')->default(0);
+            $table->unsignedInteger('sort_order')->default(1);
         });
     }
 

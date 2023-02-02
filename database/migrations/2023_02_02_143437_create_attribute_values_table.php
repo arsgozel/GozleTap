@@ -15,7 +15,11 @@ return new class extends Migration
     {
         Schema::create('attribute_values', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
+            $table->unsignedBigInteger('attribute_id')->index();
+            $table->foreign('attribute_id')->references('id')->on('attributes')->cascadeOnDelete();
+            $table->string('name_tm');
+            $table->string('name_en')->nullable();
+            $table->unsignedInteger('sort_order')->default(1);
         });
     }
 

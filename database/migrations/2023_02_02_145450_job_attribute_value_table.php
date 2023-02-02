@@ -13,7 +13,14 @@ return new class extends Migration
      */
     public function up()
     {
-        //
+        Schema::create('product_attribute_value', function (Blueprint $table) {
+            $table->unsignedBigInteger('job_id')->index();
+            $table->foreign('job_id')->references('id')->on('jobs')->cascadeOnDelete();
+            $table->unsignedBigInteger('attribute_value_id')->index();
+            $table->foreign('attribute_value_id')->references('id')->on('attribute_values')->cascadeOnDelete();
+            $table->primary(['job_id', 'attribute_value_id']);
+            $table->unsignedInteger('sort_order')->default(1);
+        });
     }
 
     /**
@@ -23,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('job_attribute_value');
     }
 };
