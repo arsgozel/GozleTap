@@ -13,12 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('verifications', function (Blueprint $table) {
+        Schema::create('job_images', function (Blueprint $table) {
             $table->id();
-            $table->string('phone')->unique();
-            $table->string('code');
-            $table->unsignedTinyInteger('status')->default(0);
-            $table->timestamps();
+            $table->unsignedBigInteger('job_id')->index();
+            $table->foreign('job_id')->references('id')->on('jobs')->cascadeOnDelete();
+            $table->string('image');
         });
     }
 
@@ -29,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('verifications');
+        Schema::dropIfExists('product_images');
     }
 };

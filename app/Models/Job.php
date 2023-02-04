@@ -37,9 +37,9 @@ class Job extends Model
     }
 
 
-    public function customer()
+    public function user()
     {
-        return $this->belongsTo(Customer::class);
+        return $this->belongsTo(User::class);
     }
 
 
@@ -77,6 +77,23 @@ class Job extends Model
     {
         return $this->belongsToMany(AttributeValue::class, 'job_attribute_value')
             ->orderByPivot('sort_order');
+    }
+
+
+    public function images()
+    {
+        return $this->hasMany(JobImage::class)
+            ->orderBy('id');
+    }
+
+
+    public function isOwner()
+    {
+        if ($this->user_id == auth()->id() or auth()->user()->isAdmin()) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
 

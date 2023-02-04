@@ -13,11 +13,8 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('customers', function (Blueprint $table) {
-            $table->id();
-            $table->string('name');
-            $table->string('username')->unique();
-            $table->timestamp('created_at')->nullable();
+        Schema::table('jobs', function (Blueprint $table) {
+            $table->unsignedInteger('favorites')->nullable();
         });
     }
 
@@ -28,6 +25,8 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('customers');
+        Schema::table('jobs', function (Blueprint $table) {
+            $table->dropColumn('favorites');
+        });
     }
 };

@@ -13,9 +13,8 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('customers', function (Blueprint $table) {
-            $table->string('password');
-            $table->rememberToken();
+        Schema::table('jobs', function (Blueprint $table) {
+            $table->boolean('is_approved')->default(0);
         });
     }
 
@@ -26,9 +25,8 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('customers', function (Blueprint $table) {
-            $table->dropColumn('password');
-            $table->dropRememberToken();
+        Schema::table('jobs', function (Blueprint $table) {
+            $table->dropColumn('is_approved');
         });
     }
 };

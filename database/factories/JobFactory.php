@@ -3,10 +3,11 @@
 namespace Database\Factories;
 
 use App\Models\AttributeValue;
+use App\Models\Attribute;
 use App\Models\Category;
 use App\Models\Job;
 use App\Models\Location;
-use App\Models\Customer;
+use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Facades\DB;
@@ -16,29 +17,31 @@ use Illuminate\Support\Facades\DB;
  */
 class JobFactory extends Factory
 {
-    /**
-     * Configure the model factory.
-     *
-     * @return $this
-     */
+
     public function configure()
     {
-        return $this->afterMaking(function (Job $product) {
+        return $this->afterMaking(function (Job $job) {
             //
-        })->afterCreating(function (Job $product) {
-            //
+        })->afterCreating(function (Job $job) {
+            $job->save();
+
+            $attributes = Attribute::with('values')
+                ->orderBy('sort_order')
+                ->get();
+
+            $values = [];
+            foreach ($attributes as $attribute) {
+                $values[] = $attribute->values->random()->id;
+            }
+
+            $job->attributeValues()->sync($values);
         });
     }
 
-    /**
-     * Define the model's default state.
-     *
-     * @return array<string, mixed>
-     */
     public function definition()
     {
+        $user = DB::table('users')->inRandomOrder()->first();
         $category = Category::doesntHave('child')->inRandomOrder()->first();
-        $customer = Customer::inRandomOrder()->first();
         $location = Location::inRandomOrder()->first();
         $gender = AttributeValue::where('attribute_id', 1)->inRandomOrder()->first();
         $education = AttributeValue::where('attribute_id', 2)->inRandomOrder()->first();
@@ -48,11 +51,12 @@ class JobFactory extends Factory
         $nameTm = fake()->streetName();
         $nameEn = null;
 
-        $fullNameTm = $nameTm . ' '
+        $fullNameTm = $nameTm . '-'
             . $category->name_tm . ' ';
 
         return [
-            'customer_id' => $customer->id,
+            'is_approved' => fake()->boolean(90),
+            'user_id' => $user->id,
             'category_id' => $category->id,
             'gender_id' => $gender->id,
             'experience_id' => $experience->id,
@@ -70,7 +74,8 @@ class JobFactory extends Factory
             'email' => fake()->unique()->safeEmail(),
             'viewed' => rand(20, 200),
             'favorites' => rand(0, 30),
-            'description' => fake()->text(rand(100, 200)),
+            'description' => fake()->text(rand(50, 100)),
+            'random' => rand(0, 79),
         ];
     }
 }

@@ -17,6 +17,7 @@ Route::controller(JobController::class)
     ->group(function () {
         Route::get('/job/{slug}', 'job')->name('job')->where('slug', '[A-Za-z0-9-]+');
         Route::get('/category/{slug}', 'category')->name('category')->where('slug', '[A-Za-z0-9-]+');
+
     });
 
 

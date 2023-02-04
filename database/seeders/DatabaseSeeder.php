@@ -4,8 +4,7 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use App\Models\Job;
-use App\Models\Customer;
-use App\Models\Verification;
+use App\Models\Contact;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -20,19 +19,7 @@ class DatabaseSeeder extends Seeder
             AttributeValueSeeder::class,
         ]);
 
-
-        for ($i = 0; $i < 25; $i++) {
-            $verification = Verification::factory()->create();
-            if ($verification->status) {
-                Customer::factory()
-                    ->create([
-                        'username' => $verification->phone,
-                        'password' => bcrypt($verification->code),
-                        'created_at' => $verification->created_at,
-                    ]);
-            }
-        }
-
+        Contact::factory()->count(10)->create();
         Job::factory()->count(80)->create();
 
     }
