@@ -10,7 +10,7 @@ return [
     'category' => 'Category',
     'categories' => 'Categories',
     'parentCategory' => 'Parent Category',
-    'job' => 'Job',
+    'jobs' => 'Job',
     'jobs' => 'Jobs',
     'attribute' => 'Attribute',
     'attributes' => 'Attributes',
@@ -59,7 +59,7 @@ return [
     'canceled' => 'Canceled',
     'not-verified' => 'Not-verified',
     'verified' => 'Verified',
-
+    'jobName' => 'Job Name',
     'receivedAt' => 'Received at',
     'createdAt' => 'Created at',
     'updatedAt' => 'Updated at',

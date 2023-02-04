@@ -8,7 +8,7 @@
             </li>
             <li class="nav-item">
                 <a class="nav-link link-dark" href="{{ route('admin.jobs.index') }}">
-                    <i class="bi bi-briefcase-fill text-danger me-1"></i> @lang('app.jobs')
+                    <i class="bi-briefcase-fill text-danger me-1"></i> @lang('app.jobs')
                 </a>
             </li>
             <li class="nav-item">
@@ -17,23 +17,24 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link link-dark" href="{{ route('admin.locations.index') }}">
-                    <i class="bi-geo-alt-fill text-danger me-1"></i> @lang('app.locations')
-                </a>
-            </li>
-            <li class="nav-item">
                 <a class="nav-link link-dark" href="{{ route('admin.attributes.index') }}">
                     <i class="bi-palette-fill text-danger me-1"></i> @lang('app.attributes')
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link link-dark" href="{{ route('admin.users.index') }}">
-                    <i class="bi-people-fill text-danger me-1"></i> @lang('app.users')
+                <a class="nav-link link-dark" href="{{ route('admin.locations.index') }}">
+                    <i class="bi-geo-alt-fill text-danger me-1"></i> @lang('app.locations')
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link link-dark" href="{{ route('admin.contacts.index') }}">
+                    <i class="bi-chat-left-dots-fill text-danger me-1"></i> @lang('app.contacts')
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link link-dark" href="{{ route('admin.contacts.index') }}">
-                    <i class="bi-chat-right-dots-fill text-danger me-1"></i> @lang('app.contacts')
+                <a class="nav-link link-dark" href="{{ route('admin.users.index') }}">
+                    <i class="bi-people-fill text-danger me-1"></i> @lang('app.users')
                 </a>
             </li>
         </ul>

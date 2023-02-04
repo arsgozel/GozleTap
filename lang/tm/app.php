@@ -9,7 +9,7 @@ return [
     'users' => 'Ulanyjylar',
     'category' => 'Kategoriýa',
     'categories' => 'Kategoriýalar',
-    'product' => 'Iş',
+    'jobs' => 'Iş',
     'products' => 'Işler',
     'attribute' => 'Aýratynlyk',
     'attributes' => 'Aýratynlyklar',
@@ -30,7 +30,7 @@ return [
     'authAttempt' => null,
     'authAttempts' => null,
     'contacts' => 'Kontaktlar',
-
+    'jobName' => 'Işiň ady',
     'login' => 'Ulgama girmek',
     'logout' => 'Ulgamdan çykmak',
     'register' => 'Hasap açmak',
@@ -52,7 +52,7 @@ return [
     'phone' => 'Telefon',
     'message' => 'Hat',
     'jobs' => 'Işler',
-    'job' => 'Iş',
+    'jobs' => 'Iş',
 
     'receivedAt' => 'Gelen wagty',
     'createdAt' => 'Döredilen wagty',
