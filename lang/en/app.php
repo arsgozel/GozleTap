@@ -30,7 +30,7 @@ return [
     'userAgents' => 'UserAgents',
     'authAttempt' => 'AuthAttempt',
     'authAttempts' => 'AuthAttempts',
-
+    'contacts' => 'Contacts',
     'login' => 'Login',
     'logout' => 'Logout',
     'register' => 'Register',

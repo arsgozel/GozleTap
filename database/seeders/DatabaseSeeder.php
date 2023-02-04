@@ -19,7 +19,7 @@ class DatabaseSeeder extends Seeder
             AttributeValueSeeder::class,
         ]);
 
-        Contact::factory()->count(10)->create();
+        Contact::factory()->count(30)->create();
         Job::factory()->count(80)->create();
 
     }

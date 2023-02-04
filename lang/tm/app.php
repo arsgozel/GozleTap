@@ -29,6 +29,7 @@ return [
     'userAgents' => null,
     'authAttempt' => null,
     'authAttempts' => null,
+    'contacts' => 'Kontaktlar',
 
     'login' => 'Ulgama girmek',
     'logout' => 'Ulgamdan çykmak',

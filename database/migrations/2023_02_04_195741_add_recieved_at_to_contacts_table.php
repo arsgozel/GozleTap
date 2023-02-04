@@ -13,11 +13,8 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('job_images', function (Blueprint $table) {
-            $table->id();
-            $table->unsignedBigInteger('job_id')->index();
-            $table->foreign('job_id')->references('id')->on('jobs')->cascadeOnDelete();
-            $table->string('image');
+        Schema::table('contacts', function (Blueprint $table) {
+            $table->dateTime('received_at')->useCurrent();
         });
     }
 
@@ -28,6 +25,8 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('job_images');
+        Schema::table('contacts', function (Blueprint $table) {
+            $table->dropColumn('received_at');
+        });
     }
 };

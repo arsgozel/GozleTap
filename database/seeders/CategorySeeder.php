@@ -16,7 +16,7 @@ class CategorySeeder extends Seeder
     public function run()
     {
         $objs = [
-            ['Mugallym', 'Teacher', [
+            ['Mugallym', null, [
                 ['Inlis dili mugallym', null],
                 ['Rus dili mugallym', null],
                 ['Fizika mugallym', null],
@@ -32,7 +32,7 @@ class CategorySeeder extends Seeder
                 ['Baş aşpez', null],
                 ['Kömekçi aşpez', null],
             ]],
-            ['Lukman', 'Cook', [
+            ['Lukman', null, [
                 ['Newropatolog', null],
                 ['Stomatolog', null],
             ]],
