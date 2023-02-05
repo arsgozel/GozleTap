@@ -129,6 +129,6 @@ class Job extends Model
 
     public function getImage()
     {
-        return $this->image ? Storage::url('j/' . $this->image) : asset('img/jobs.jpg');
+        return $this->image ? Storage::url('j/' . $this->image) : asset('img/job.jpg');
     }
 }
