@@ -77,6 +77,9 @@
                         <div>
                             <i class="bi-heart-fill text-danger"></i>
                             {{ $obj->favorites }}
+                            <br>
+                            <i class="bi bi-eye-fill text-primary"></i>
+                            {{ $obj->viewed }}
                         </div>
                     </td>
                     <td>

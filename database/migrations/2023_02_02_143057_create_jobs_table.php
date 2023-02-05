@@ -31,7 +31,7 @@ return new class extends Migration
             $table->unsignedInteger('viewed')->default(0);
             $table->text('description')->nullable();
             $table->unsignedInteger('random')->default(0);
-            $table->unsignedInteger('stock')->default(0);
+            $table->integer('stock')->default(0);
             $table->timestamps();
         });
     }

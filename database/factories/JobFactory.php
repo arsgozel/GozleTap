@@ -73,7 +73,6 @@ class JobFactory extends Factory
             'phone' => fake()->unique()->numberBetween(61000000, 65999999),
             'email' => fake()->unique()->safeEmail(),
             'viewed' => rand(20, 200),
-            'stock' => rand(0, 10),
             'favorites' => rand(0, 30),
             'description' => fake()->text(rand(50, 100)),
             'random' => rand(0, 79),
