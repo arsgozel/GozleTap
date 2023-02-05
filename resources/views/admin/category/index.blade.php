@@ -35,7 +35,7 @@
                         @if($obj->parent_id)
                             {{ $obj->parent->name_tm }} /
                         @endif
-                        <a href="{{$obj->slug}}" class="text-decoration-none">
+                        <a href="{{ route('admin.jobs.index',$obj->slug) }}" class="text-decoration-none">
                             {{ $obj->name_tm }} <i class="bi-box-arrow-up-right"></i>
                         </a>
                     </td>

@@ -60,6 +60,11 @@ class UserPolicy
         return $this->checkPermission($user, 8);
     }
 
+    public function contacts(User $user)
+    {
+        return $this->checkPermission($user, 9);
+    }
+
 
     protected function checkPermission($user, $id)
     {

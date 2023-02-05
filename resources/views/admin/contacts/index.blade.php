@@ -42,6 +42,16 @@
                         @endif
                     </td>
                     <td>{{ $obj->received_at }}</td>
+                    <td>
+                        <div class="modal-footer">
+                            <form action="{{ route('admin.contacts.destroy', $obj->id) }}" method="post">
+                                @method('DELETE')
+                                @csrf
+                                @honeypot
+                                <button type="submit" class="btn btn-secondary btn-sm"><i class="bi-trash"></i> @lang('app.delete')</button>
+                            </form>
+                        </div>
+                    </td>
                 </tr>
             @endforeach
             </tbody>

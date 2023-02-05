@@ -52,8 +52,8 @@ return [
     'phone' => 'Telefon',
     'message' => 'Hat',
     'jobs' => 'Işler',
-    'jobs' => 'Iş',
-
+    'job' => 'Iş',
+    'contact' => 'Kontakt',
     'receivedAt' => 'Gelen wagty',
     'createdAt' => 'Döredilen wagty',
     'updatedAt' => 'Üýtgedilen wagty',

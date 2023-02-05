@@ -22,11 +22,12 @@ class LoginController extends Controller
 
         $request->session()->regenerate();
 
-        if (Auth::check('user_id' == 1)){
+        if (Auth::user()->is_admin == 1){
             return to_route('admin.dashboard');
-        } else {
-            return redirect()->intended(RouteServiceProvider::HOME);
+        } else{
+
         }
+        return to_route('home');
 
     }
 

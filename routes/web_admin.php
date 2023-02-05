@@ -31,11 +31,11 @@ Route::middleware('auth')
     ->group(function () {
         Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
-        Route::resource('jobs', JobController::class);
-        Route::resource('categories', CategoryController::class)->except(['show']);
-        Route::resource('attributes', AttributeController::class)->except(['show']);
-        Route::resource('attributeValues', AttributeValueController::class)->except(['index', 'show']);
-        Route::resource('locations', LocationController::class)->except(['show']);
-        Route::resource('users', UserController::class)->except(['show']);
-        Route::resource('contacts', ContactController::class)->only(['index']);
+        Route::resource('jobs', JobController::class)->middleware('can:jobs');
+        Route::resource('categories', CategoryController::class)->except(['show'])->middleware('can:categories');
+        Route::resource('attributes', AttributeController::class)->except(['show'])->middleware('can:attributes');
+        Route::resource('attributeValues', AttributeValueController::class)->except(['index', 'show'])->middleware('can:attributes');
+        Route::resource('locations', LocationController::class)->except(['show'])->middleware('can:locations');
+        Route::resource('users', UserController::class)->except(['show'])->middleware('can:users');
+        Route::resource('contacts', ContactController::class)->only(['index', 'destroy'])->middleware('can:contacts');
     });

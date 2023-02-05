@@ -35,5 +35,6 @@ class AuthServiceProvider extends ServiceProvider
         Gate::define('authAttempts', [UserPolicy::class, 'authAttempts']);
         Gate::define('ipAddresses', [UserPolicy::class, 'ipAddresses']);
         Gate::define('userAgents', [UserPolicy::class, 'userAgents']);
+        Gate::define('contacts', [UserPolicy::class, 'contacts']);
     }
 }

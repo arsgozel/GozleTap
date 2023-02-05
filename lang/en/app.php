@@ -10,7 +10,7 @@ return [
     'category' => 'Category',
     'categories' => 'Categories',
     'parentCategory' => 'Parent Category',
-    'jobs' => 'Job',
+    'job' => 'Job',
     'jobs' => 'Jobs',
     'attribute' => 'Attribute',
     'attributes' => 'Attributes',
@@ -63,7 +63,7 @@ return [
     'receivedAt' => 'Received at',
     'createdAt' => 'Created at',
     'updatedAt' => 'Updated at',
-
+    'contact' => 'Contact',
     'send' => 'Send',
     'add' => 'Add',
     'added' => 'added',

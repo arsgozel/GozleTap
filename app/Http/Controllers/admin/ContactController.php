@@ -37,4 +37,16 @@ class ContactController extends Controller
                 'objs' => $objs,
             ]);
     }
+
+    public function destroy($id)
+    {
+        $obj = Contact::findOrFail($id);
+        $objName = $obj->name;
+        $obj->delete();
+
+        return redirect()->back()
+            ->with([
+                'success' => trans('app.contact') . ' (' . $objName . ') ' . trans('app.deleted') . '!'
+            ]);
+    }
 }
