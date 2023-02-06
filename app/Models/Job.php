@@ -131,4 +131,13 @@ class Job extends Model
     {
         return $this->image ? Storage::url('j/' . $this->image) : asset('img/job.jpg');
     }
+
+    public function statusColor()
+    {
+        if ($this->is_approved == 1) {
+            return 'success';
+        } elseif ($this->is_approved == 0) {
+            return 'danger';
+        }
+    }
 }

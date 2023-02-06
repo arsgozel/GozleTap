@@ -86,10 +86,10 @@ class JobController extends Controller
     {
         $request->validate([
             'category' => 'required|integer|min:1',
-            'gender' => 'required|integer|min:1',
-            'education' => 'required|integer|min:1',
-            'work_time' => 'required|integer|min:1',
-            'experience' => 'required|integer|min:1',
+            'gender' => 'nullable|integer|min:1',
+            'education' => 'nullable|integer|min:1',
+            'work_time' => 'nullable|integer|min:1',
+            'experience' => 'nullable|integer|min:1',
             'name_tm' => 'required|string|max:255',
             'name_en' => 'nullable|string|max:255',
             'salary' => 'nullable|numeric|min:0',
@@ -97,10 +97,10 @@ class JobController extends Controller
             'images.*' => 'nullable|image|mimes:jpg,jpeg|max:128|dimensions:width=1000,height=1000',
         ]);
         $category = Category::findOrFail($request->brand);
-        $gender = AttributeValue::findOrFail($request->gender);
-        $education = AttributeValue::findOrFail($request->education);
-        $work_time = AttributeValue::findOrFail($request->work_time);
-        $experience = AttributeValue::findOrFail($request->experience);
+        $gender = $request->has('gender') ? AttributeValue::findOrFail($request->gender) : null;
+        $education = $request->has('education') ? AttributeValue::findOrFail($request->education) : null;
+        $work_time = $request->has('work_time') ? AttributeValue::findOrFail($request->work_time) : null;
+        $experience = $request->has('experience') ? AttributeValue::findOrFail($request->experience) : null;
 
         $fullNameTm = $request->name_tm . ' '
             . $category->name_tm;
@@ -109,10 +109,10 @@ class JobController extends Controller
 
         $obj = Job::create([
             'category_id' => $category->id,
-            'gender_id' => $gender->id,
-            'education_id' => $education->id,
-            'work_time_id' => $work_time->id,
-            'experience_id' => $experience->id,
+            'gender_id' => $gender->id ?: null,
+            'education_id' => $education->id ?: null,
+            'work_time_id' => $work_time->id ?: null,
+            'experience_id' => $experience->id ?: null,
             'name_tm' => $request->name_tm,
             'name_en' => $request->name_en ?: null,
             'full_name_tm' => isset($fullNameTm) ? $fullNameTm : null,
@@ -140,7 +140,7 @@ class JobController extends Controller
             $obj->update();
         }
 
-        return to_route('admin.job.index')
+        return to_route('admin.jobs.index')
             ->with([
                 'success' => @trans('app.job') . $obj->getName() . @trans('app.added') . '!'
             ]);
@@ -175,21 +175,21 @@ class JobController extends Controller
     {
         $request->validate([
             'category' => 'required|integer|min:1',
-            'gender' => 'required|integer|min:1',
-            'education' => 'required|integer|min:1',
-            'work_time' => 'required|integer|min:1',
-            'experience' => 'required|integer|min:1',
+            'gender' => 'nullable|integer|min:1',
+            'education' => 'nullable|integer|min:1',
+            'work_time' => 'nullable|integer|min:1',
+            'experience' => 'nullable|integer|min:1',
             'name_tm' => 'required|string|max:255',
             'name_en' => 'nullable|string|max:255',
-            'salary' => 'required|numeric|min:0',
+            'salary' => 'nullable|numeric|min:0',
             'images' => 'nullable|array|min:0',
             'images.*' => 'nullable|image|mimes:jpg,jpeg|max:260|dimensions:width=1000,height=1000',
         ]);
         $category = Category::findOrFail($request->category);
-        $gender = AttributeValue::findOrFail($request->gender);
-        $education = AttributeValue::findOrFail($request->education);
-        $work_time = AttributeValue::findOrFail($request->work_time);
-        $experience = AttributeValue::findOrFail($request->experience);
+        $gender = $request->has('gender') ? AttributeValue::findOrFail($request->gender) : null;
+        $education = $request->has('education') ? AttributeValue::findOrFail($request->education) : null;
+        $work_time = $request->has('work_time') ? AttributeValue::findOrFail($request->work_time) : null;
+        $experience = $request->has('experience') ? AttributeValue::findOrFail($request->experience) : null;
 
         $fullNameTm = $request->name_tm . ' '
             . $category->name_tm;
@@ -230,7 +230,7 @@ class JobController extends Controller
 
         return to_route('admin.jobs.index')
             ->with([
-                'success' => @trans('app.product') . $obj->getName() . @trans('app.updated') . '!'
+                'success' => @trans('app.job') . $obj->getName() . @trans('app.updated') . '!'
             ]);
     }
 

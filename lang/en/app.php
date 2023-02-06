@@ -78,7 +78,10 @@ return [
     'deleted' => 'deleted',
     'jobNotFound' =>'Job is not found',
     'error' => 'Error',
-
+    'experience' => 'Working-Experience',
+    'work_time' => 'Working-time',
+    'education' => 'Education Type',
+    'gender' => 'Gender',
 
     'shippingInformation' => 'Shipping Information',
     'customerInformation' => 'Customer Information',

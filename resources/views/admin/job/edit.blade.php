@@ -1,11 +1,11 @@
 @extends('admin.layouts.app')
 @section('title')
-    @lang('app.products')
+    @lang('app.jobs')
 @endsection
 @section('content')
     <div class="h4 mb-3">
         <a href="{{ route('admin.jobs.index') }}" class="text-decoration-none">
-            @lang('app.products')
+            @lang('app.jobs')
         </a>
         <i class="bi-chevron-right small"></i>
         @lang('app.edit')
@@ -15,7 +15,6 @@
         <div class="row mb-3 pe-4">
             @method('PUT')
             @csrf
-            <div class="col-10 col-sm-8 col-md-6 col-lg-4">
                 <div class="mb-3">
                     <label for="category" class="form-label fw-semibold">
                         Category
@@ -32,6 +31,7 @@
                     <div class="alert alert-danger mt-2">{{ $message }}</div>
                     @enderror
                 </div>
+            </div>
             <div class="col-10 col-sm-8 col-md-6 col-lg-4">
                 <div class="mb-3">
                     <label for="name_tm" class="form-label fw-semibold">
@@ -65,10 +65,10 @@
                     </label>
                     <div class="input-group mb-3">
                         <input type="number" min="0" class="form-control @error('price') is-invalid @enderror"
-                               name="price" id="price" value="{{ $obj->price }}" step="0.1" required>
+                               name="price" id="price" value="{{ $obj->salary }}" step="0.1">
                         <span class="input-group-text">TMT</span>
                     </div>
-                    @error('price')
+                    @error('salary')
                     <div class="alert alert-danger mt-2">{{ $message }}</div>
                     @enderror
                 </div>
@@ -93,31 +93,31 @@
 
                 <div class="mb-3">
                     <label for="color" class="form-label fw-semibold">
-                        @lang('app.color')
+                        @lang('app.education')
                     </label>
                     <select class="form-select @error('color') is-invalid @enderror"
                             name="color"
                             id="color">
                         <option value>-</option>
                         @foreach($attributes[1]->values as $attributeValue)
-                            <option value="{{$attributeValue->id}}" {{ $attributeValue->id == $obj->color_id ? 'selected' : ''}}>{{ $attributeValue->getName() }}</option>
+                            <option value="{{$attributeValue->id}}" {{ $attributeValue->id == $obj->education_id ? 'selected' : ''}}>{{ $attributeValue->getName() }}</option>
                         @endforeach
                     </select>
-                    @error('color')
+                    @error('education')
                     <div class="alert alert-danger mt-2">{{ $message }}</div>
                     @enderror
                 </div>
 
                 <div class="mb-3">
                     <label for="size" class="form-label fw-semibold">
-                        @lang('app.size')
+                        @lang('app.work_time')
                     </label>
                     <select class="form-select @error('size') is-invalid @enderror"
                             name="size"
                             id="size">
                         <option value>-</option>
                         @foreach($attributes[2]->values as $attributeValue)
-                            <option value="{{$attributeValue->id}}" {{ $attributeValue->id == $obj->size_id ? 'selected' : ''}}>{{ $attributeValue->getName() }}</option>
+                            <option value="{{$attributeValue->id}}" {{ $attributeValue->id == $obj->work_time_id ? 'selected' : ''}}>{{ $attributeValue->getName() }}</option>
                         @endforeach
                     </select>
                     @error('size')
@@ -125,26 +125,22 @@
                     @enderror
                 </div>
 
-                @if(count($attributes) > 3)
-                    @foreach($attributes as $attribute)
-                        <div class="mb-3">
-                            <label for="{{ strtolower($attribute->name_en) }}" class="form-label fw-semibold">
-                                {{ $attribute->getName() }}
-                            </label>
-                            <select class="form-select @error('{{ strtolower($attribute->name_en) }}') is-invalid @enderror"
-                                    name="{{ strtolower($attribute->name_en) }}"
-                                    id="{{ strtolower($attribute->name_en) }}">
-                                <option value>-</option>
-                                @foreach($attribute->values as $attributeValue)
-                                    <option value="{{$attributeValue->id}}">{{ $attributeValue->getName() }}</option>
-                                @endforeach
-                            </select>
-                            @error('{{ strtolower($attribute->name_en) }}')
-                            <div class="alert alert-danger mt-2">{{ $message }}</div>
-                            @enderror
-                        </div>
-                    @endforeach
-                @endif
+                <div class="mb-3">
+                    <label for="size" class="form-label fw-semibold">
+                        @lang('app.experience')
+                    </label>
+                    <select class="form-select @error('size') is-invalid @enderror"
+                            name="size"
+                            id="size">
+                        <option value>-</option>
+                        @foreach($attributes[3]->values as $attributeValue)
+                            <option value="{{$attributeValue->id}}" {{ $attributeValue->id == $obj->experience_id ? 'selected' : ''}}>{{ $attributeValue->getName() }}</option>
+                        @endforeach
+                    </select>
+                    @error('size')
+                    <div class="alert alert-danger mt-2">{{ $message }}</div>
+                    @enderror
+                </div>
             </div>
             <div class="mb-3">
                 <label for="image" class="form-label fw-semibold">
@@ -152,12 +148,12 @@
                 </label>
                 <div class="row">
                     @if(count($images) > 0)
-                    <div class="col-10 col-sm-8 col-md-6 col-lg-4">
-                        @foreach($images as $image)
-                            <img src="{{  $image }}" alt="{{ $obj->getName() }}" class="img-fluid rounded"
-                                 style="max-height:5rem;">
-                        @endforeach
-                    </div>
+                        <div class="col-10 col-sm-8 col-md-6 col-lg-4">
+                            @foreach($images as $image)
+                                <img src="{{  $image }}" alt="{{ $obj->getName() }}" class="img-fluid rounded"
+                                     style="max-height:5rem;">
+                            @endforeach
+                        </div>
                     @endif
                     <div class="col-10 col-sm-8 col-md-6 col-lg-4">
                         <div class="input-group mb-3">

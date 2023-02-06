@@ -14,14 +14,14 @@ return new class extends Migration
     public function up()
     {
         Schema::table('jobs', function (Blueprint $table) {
-            $table->unsignedBigInteger('gender_id')->index();
-            $table->foreign('gender_id')->references('id')->on('attribute_values')->cascadeOnDelete();
-            $table->unsignedBigInteger('work_time_id')->index();
-            $table->foreign('work_time_id')->references('id')->on('attribute_values')->cascadeOnDelete();
-            $table->unsignedBigInteger('experience_id')->index();
-            $table->foreign('experience_id')->references('id')->on('attribute_values')->cascadeOnDelete();
-            $table->unsignedBigInteger('education_id')->index();
-            $table->foreign('education_id')->references('id')->on('attribute_values')->cascadeOnDelete();
+            $table->unsignedBigInteger('gender_id')->index()->nullable();
+            $table->foreign('gender_id')->references('id')->on('attribute_values')->nullOnDelete();
+            $table->unsignedBigInteger('work_time_id')->index()->nullable();
+            $table->foreign('work_time_id')->references('id')->on('attribute_values')->nullOnDelete();
+            $table->unsignedBigInteger('experience_id')->index()->nullable();
+            $table->foreign('experience_id')->references('id')->on('attribute_values')->nullOnDelete();
+            $table->unsignedBigInteger('education_id')->index()->nullable();
+            $table->foreign('education_id')->references('id')->on('attribute_values')->nullOnDelete();
         });
     }
 

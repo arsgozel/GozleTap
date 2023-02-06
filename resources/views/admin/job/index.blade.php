@@ -18,6 +18,7 @@
             <tr>
                 <th scope="col">ID</th>
                 <th scope="col">User</th>
+                <th scope="col">Approve</th>
                 <th scope="col">Image</th>
                 <th scope="col" width="15%">Category</th>
                 <th scope="col">Name</th>
@@ -34,6 +35,11 @@
                     <td>
                         <div class="fs-6 mb-1">
                             {{ $obj->user->name}}
+                        </div>
+                    </td>
+                    <td>
+                        <div class="fs-6 mb-1 text-center">
+                            <span class="badge text-bg-{{ $obj->statusColor() }}">{{$obj->is_approved}}</span>
                         </div>
                     </td>
                     <td>
@@ -81,7 +87,7 @@
                             <i class="bi-heart-fill text-danger"></i>
                             {{ $obj->favorites }}
                             <br>
-                            <i class="bi bi-eye-fill text-primary"></i>
+                            <i class="bi bi-eye-fill text-dark"></i>
                             {{ $obj->viewed }}
                         </div>
                     </td>
