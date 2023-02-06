@@ -119,6 +119,7 @@ class JobController extends Controller
             'full_name_en' => isset($fullNameEn) ? $fullNameEn : null,
             'slug' => str()->slug($fullNameTm) . '-' . str()->random(10),
             'salary' => $request->salary,
+            'is_approved' => $request->user_id == 1,
         ]);
 
         if ($request->has('images')) {
@@ -175,21 +176,21 @@ class JobController extends Controller
     {
         $request->validate([
             'category' => 'required|integer|min:1',
-            'gender' => 'nullable|integer|min:1',
-            'education' => 'nullable|integer|min:1',
-            'work_time' => 'nullable|integer|min:1',
-            'experience' => 'nullable|integer|min:1',
+            'gender' => 'required|integer|min:1',
+            'education' => 'required|integer|min:1',
+            'work_time' => 'required|integer|min:1',
+            'experience' => 'required|min:1',
             'name_tm' => 'required|string|max:255',
             'name_en' => 'nullable|string|max:255',
-            'salary' => 'nullable|numeric|min:0',
+            'salary' => 'required|numeric|min:0',
             'images' => 'nullable|array|min:0',
             'images.*' => 'nullable|image|mimes:jpg,jpeg|max:260|dimensions:width=1000,height=1000',
         ]);
         $category = Category::findOrFail($request->category);
-        $gender = $request->has('gender') ? AttributeValue::findOrFail($request->gender) : null;
-        $education = $request->has('education') ? AttributeValue::findOrFail($request->education) : null;
-        $work_time = $request->has('work_time') ? AttributeValue::findOrFail($request->work_time) : null;
-        $experience = $request->has('experience') ? AttributeValue::findOrFail($request->experience) : null;
+        $gender = AttributeValue::findOrFail($request->gender);
+        $education =  AttributeValue::findOrFail($request->education);
+        $work_time =  AttributeValue::findOrFail($request->work_time);
+        $experience = AttributeValue::findOrFail($request->experience);
 
         $fullNameTm = $request->name_tm . ' '
             . $category->name_tm;
@@ -198,16 +199,18 @@ class JobController extends Controller
 
         $obj = Job::findOrFail($id);
         $obj->category_id = $category->id;
-        $obj->gender_id = $gender->id ?: null;
-        $obj->education_id = $education->id ?: null;
-        $obj->work_time_id = $work_time->id ?: null;
-        $obj->experience_id = $experience->id ?: null;
+        $obj->gender_id = $gender->id;
+        $obj->education_id = $education->id;
+        $obj->work_time_id = $work_time->id;
+        $obj->experience_id = $experience->id;
         $obj->name_tm = $request->name_tm;
         $obj->name_en = $request->name_en ?: null;
         $obj->full_name_tm = isset($fullNameTm) ? $fullNameTm : null;
         $obj->full_name_en = isset($fullNameEn) ? $fullNameEn : null;
         $obj->slug = str()->slug($fullNameTm) . '-' . str()->random(10);
         $obj->salary = $request->salary;
+        $obj->update();
+
 
         if ($request->has('images')) {
             $firstImageName = "";
@@ -230,7 +233,7 @@ class JobController extends Controller
 
         return to_route('admin.jobs.index')
             ->with([
-                'success' => @trans('app.job') . $obj->getName() . @trans('app.updated') . '!'
+                'success' => trans('app.job') . ' (' . $obj->getName() . ') ' . trans('app.updated') . '!'
             ]);
     }
 

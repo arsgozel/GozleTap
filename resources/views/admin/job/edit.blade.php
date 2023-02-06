@@ -64,8 +64,8 @@
                         <span class="text-danger">*</span>
                     </label>
                     <div class="input-group mb-3">
-                        <input type="number" min="0" class="form-control @error('price') is-invalid @enderror"
-                               name="price" id="price" value="{{ $obj->salary }}" step="0.1">
+                        <input type="number" min="0" class="form-control @error('salary') is-invalid @enderror"
+                               name="salary" id="salary" value="{{ $obj->salary }}" step="0.1">
                         <span class="input-group-text">TMT</span>
                     </div>
                     @error('salary')
@@ -92,12 +92,12 @@
                 </div>
 
                 <div class="mb-3">
-                    <label for="color" class="form-label fw-semibold">
+                    <label for="education" class="form-label fw-semibold">
                         @lang('app.education')
                     </label>
-                    <select class="form-select @error('color') is-invalid @enderror"
-                            name="color"
-                            id="color">
+                    <select class="form-select @error('education') is-invalid @enderror"
+                            name="education"
+                            id="education">
                         <option value>-</option>
                         @foreach($attributes[1]->values as $attributeValue)
                             <option value="{{$attributeValue->id}}" {{ $attributeValue->id == $obj->education_id ? 'selected' : ''}}>{{ $attributeValue->getName() }}</option>
@@ -113,8 +113,8 @@
                         @lang('app.work_time')
                     </label>
                     <select class="form-select @error('size') is-invalid @enderror"
-                            name="size"
-                            id="size">
+                            name="work_time"
+                            id="work_time">
                         <option value>-</option>
                         @foreach($attributes[2]->values as $attributeValue)
                             <option value="{{$attributeValue->id}}" {{ $attributeValue->id == $obj->work_time_id ? 'selected' : ''}}>{{ $attributeValue->getName() }}</option>
@@ -130,8 +130,8 @@
                         @lang('app.experience')
                     </label>
                     <select class="form-select @error('size') is-invalid @enderror"
-                            name="size"
-                            id="size">
+                            name="experience"
+                            id="experience">
                         <option value>-</option>
                         @foreach($attributes[3]->values as $attributeValue)
                             <option value="{{$attributeValue->id}}" {{ $attributeValue->id == $obj->experience_id ? 'selected' : ''}}>{{ $attributeValue->getName() }}</option>

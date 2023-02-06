@@ -22,13 +22,7 @@ class LoginController extends Controller
 
         $request->session()->regenerate();
 
-        if (Auth::user()->is_admin == 1){
-            return to_route('admin.dashboard');
-        } else{
-
-        }
-        return to_route('home');
-
+        return to_route('admin.dashboard');
     }
 
 

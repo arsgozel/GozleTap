@@ -55,7 +55,7 @@ class JobFactory extends Factory
             . $category->name_tm . ' ';
 
         return [
-            'is_approved' => fake()->boolean(90),
+            'is_approved' => fake()->boolean(60),
             'user_id' => $user->id,
             'category_id' => $category->id,
             'gender_id' => $gender->id,
