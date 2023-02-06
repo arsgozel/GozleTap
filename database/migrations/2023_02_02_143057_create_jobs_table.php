@@ -23,7 +23,7 @@ return new class extends Migration
             $table->string('name_en')->nullable();
             $table->string('full_name_tm');
             $table->string('full_name_en')->nullable();
-            $table->string('slug')->unique();
+            $table->string('slug');
             $table->string('image')->nullable();
             $table->string('phone');
             $table->string('email')->nullable();

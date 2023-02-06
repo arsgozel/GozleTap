@@ -63,6 +63,27 @@ class JobController extends Controller
             ]);
     }
 
+    public function show($slug)
+    {
+        $job = Job::where('slug', $slug)
+            ->with('user', 'category', 'attributeValues.attribute')
+            ->firstOrFail();
+
+        $category = Category::findOrFail($job->category_id);
+        $jobs = Job::where('category_id', $category->id)
+            ->with('user')
+            ->inRandomOrder()
+            ->take(6)
+            ->get();
+
+        return view('admin.job.show')
+            ->with([
+                'job' => $job,
+                'category' => $category,
+                'jobs' => $jobs,
+            ]);
+    }
+
 
     public function create()
     {
@@ -93,7 +114,7 @@ class JobController extends Controller
             'name_tm' => 'required|string|max:255',
             'name_en' => 'nullable|string|max:255',
             'salary' => 'nullable|numeric|min:0',
-            'description' => 'nullable|string|max:300',
+            'description' => 'nullable|string|max:500',
             'phone' => 'required|integer|between:61000000,65000000',
             'email' => 'nullable|email:rfc,dns',
             'images' => 'nullable|array|min:0',
@@ -152,7 +173,7 @@ class JobController extends Controller
 
         return to_route('admin.jobs.index')
             ->with([
-                'success' => @trans('app.job') . $obj->getName() . @trans('app.added') . '!'
+                'success' => @trans('app.job') . ' (' . $obj->getName() . ') ' . @trans('app.added') . '!'
             ]);
     }
 

@@ -1,11 +1,11 @@
 @extends('admin.layouts.app')
 @section('title')
-    @lang('app.products')
+    @lang('app.jobs')
 @endsection
 @section('content')
     <div class="h4 mb-3">
         <a href="{{ route('admin.jobs.index') }}" class="text-decoration-none">
-            @lang('app.products')
+            @lang('app.jobs')
         </a>
         <i class="bi-chevron-right small"></i>
         @lang('app.add')
@@ -95,7 +95,7 @@
                     </label>
                     <div class="input-group mb-3">
                         <input type="number" min="0" class="form-control @error('salary') is-invalid @enderror"
-                               name="salary" id="salary" value="0" step="0.1">
+                               name="salary" id="salary" value="0" step="0.1" required>
                         <span class="input-group-text">TMT</span>
                     </div>
                     @error('price')
@@ -110,7 +110,7 @@
                     </label>
                     <div class="input-group mb-3">
                         <input type="number" min='61000000' max="65000000" class="form-control @error('phone') is-invalid @enderror"
-                               name="phone" id="phone" value="61000000">
+                               name="phone" id="phone" value="61000000" required>
                     </div>
                     @error('phone')
                     <div class="alert alert-danger mt-2">{{ $message }}</div>
@@ -127,7 +127,7 @@
                         </label>
                         <select class="form-select @error('{{ strtolower($attribute->name_en) }}') is-invalid @enderror"
                                 name="{{ strtolower($attribute->name_en) }}"
-                                id="{{ strtolower($attribute->name_en) }}">
+                                id="{{ strtolower($attribute->name_en) }}" required>
                             @foreach($attribute->values as $attributeValue)
                                 <option value="{{$attributeValue->id}}">{{ $attributeValue->getName() }}</option>
                             @endforeach

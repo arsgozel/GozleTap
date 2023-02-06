@@ -21,6 +21,7 @@
                 <th scope="col">Name</th>
                 <th scope="col">Message</th>
                 <th scope="col">Received at</th>
+                <th scope="col" class="text-center"><i class="bi-gear-fill"></i></th>
             </tr>
             </thead>
             <tbody>

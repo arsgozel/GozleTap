@@ -103,12 +103,11 @@ return [
     'code' => 'Code',
     'trashed' => 'Trashed',
     'statistics' => 'Statistic',
-
     'totalIncome' => 'Total income',
     'thisMonth' => 'This Month',
     'thisWeek' => 'This Week',
     'today' => 'Today',
-
+    'show' => 'Show',
     'yes' => 'Yes',
     'no' => 'No',
     'opDelete' => 'Remove <b>ID: :id</b> from this order?',

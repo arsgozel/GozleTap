@@ -31,12 +31,20 @@
             <tbody>
             @forelse($objs as $obj)
                 <tr>
-                    <td>{{ $obj->id }}</td>
+                    <td>
+                        {{ $obj->id }}
+                        <div class="fs-6 fw-semibold text-center mb-3">
+                            <a href="{{ route('admin.jobs.show', $obj->slug) }}" class="link-secondary">
+                                <i class="bi-arrow-right-circle"></i>
+                            </a>
+                        </div>
+                    </td>
                     <td>
                         <div class="fs-6 mb-1">
                             {{ $obj->user->name}}
                         </div>
                     </td>
+
                     <td>
                         <div class="fs-6 mb-1 text-center">
                             <span class="badge text-bg-{{ $obj->statusColor() }}">{{$obj->is_approved}}</span>
