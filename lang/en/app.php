@@ -82,6 +82,7 @@ return [
     'work_time' => 'Working-time',
     'education' => 'Education Type',
     'gender' => 'Gender',
+    'is_approved' => 'Approved',
 
     'shippingInformation' => 'Shipping Information',
     'customerInformation' => 'Customer Information',

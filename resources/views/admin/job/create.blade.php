@@ -48,6 +48,19 @@
                     <div class="alert alert-danger mt-2">{{ $message }}</div>
                     @enderror
                 </div>
+
+                <div class="mb-3">
+                    <label for="price" class="form-label fw-semibold">
+                        @lang('app.email')
+                    </label>
+                    <div class="input-group mb-3">
+                        <input type="number" class="form-control @error('phone') is-invalid @enderror"
+                               name="email" id="email" placeholder="name@gmail.com">
+                    </div>
+                    @error('email')
+                    <div class="alert alert-danger mt-2">{{ $message }}</div>
+                    @enderror
+                </div>
             </div>
             <div class="col-10 col-sm-8 col-md-6 col-lg-4">
                 <div class="mb-3">
@@ -81,26 +94,40 @@
                         <span class="text-danger">*</span>
                     </label>
                     <div class="input-group mb-3">
-                        <input type="number" min="0" class="form-control @error('price') is-invalid @enderror"
-                               name="price" id="price" value="0" step="0.1">
+                        <input type="number" min="0" class="form-control @error('salary') is-invalid @enderror"
+                               name="salary" id="salary" value="0" step="0.1">
                         <span class="input-group-text">TMT</span>
                     </div>
                     @error('price')
                     <div class="alert alert-danger mt-2">{{ $message }}</div>
                     @enderror
                 </div>
+
+                <div class="mb-3">
+                    <label for="price" class="form-label fw-semibold">
+                        @lang('app.phone')
+                        <span class="text-danger">*</span>
+                    </label>
+                    <div class="input-group mb-3">
+                        <input type="number" min='61000000' max="65000000" class="form-control @error('phone') is-invalid @enderror"
+                               name="phone" id="phone" value="61000000">
+                    </div>
+                    @error('phone')
+                    <div class="alert alert-danger mt-2">{{ $message }}</div>
+                    @enderror
+                </div>
+
             </div>
             <div class="col-10 col-sm-8 col-md-6 col-lg-4">
 
                 @foreach($attributes as $attribute)
                     <div class="mb-3">
                         <label for="{{ strtolower($attribute->name_en) }}" class="form-label fw-semibold">
-                            {{ $attribute->getName() }}
+                            {{ $attribute->getName() }} <span class="text-danger">*</span>
                         </label>
                         <select class="form-select @error('{{ strtolower($attribute->name_en) }}') is-invalid @enderror"
                                 name="{{ strtolower($attribute->name_en) }}"
                                 id="{{ strtolower($attribute->name_en) }}">
-                            <option value>-</option>
                             @foreach($attribute->values as $attributeValue)
                                 <option value="{{$attributeValue->id}}">{{ $attributeValue->getName() }}</option>
                             @endforeach
@@ -109,10 +136,8 @@
                         <div class="alert alert-danger mt-2">{{ $message }}</div>
                         @enderror
                     </div>
-
                 @endforeach
             </div>
-
             <button type="submit" class="btn btn-primary">
                 @lang('app.add')
             </button>

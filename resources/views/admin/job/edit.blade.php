@@ -166,6 +166,29 @@
                         <div class="alert alert-danger mt-2">{{ $message }}</div>
                         @enderror
                     </div>
+
+                        <div class="mb-3">
+                            <label for="is_approved" class="form-label fw-semibold">
+                                @lang('app.is_approved')
+                            </label>
+                            <div class="form-check @error('is_approved') is-invalid @enderror">
+                                <input class="form-check-input" type="radio" name="is_approved" id="is_approved"
+                                       value="1" {{ $obj->is_approved == 1 ? 'checked':'' }}>
+                                <label class="form-check-label" for="is_approved">
+                                    <i class="bi bi-check-circle-fill text-success"></i>
+                                </label>
+                            </div>
+                            <div class="form-check @error('is_approved') is-invalid @enderror">
+                                <input class="form-check-input" type="radio" name="is_approved" id="is_approved"
+                                       value="0" {{ $obj->is_approved == 0 ? 'checked':'' }}>
+                                <label class="form-check-label" for="is_approved">
+                                    <i class="bi bi-x-circle-fill text-danger"></i>
+                                </label>
+                            </div>
+                            @error('job_name')
+                            <div class="alert alert-danger mt-2">{{ $message }}</div>
+                            @enderror
+                        </div>
                 </div>
             </div>
             <button type="submit" class="btn btn-primary">

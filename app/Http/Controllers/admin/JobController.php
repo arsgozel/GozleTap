@@ -86,21 +86,26 @@ class JobController extends Controller
     {
         $request->validate([
             'category' => 'required|integer|min:1',
-            'gender' => 'nullable|integer|min:1',
-            'education' => 'nullable|integer|min:1',
-            'work_time' => 'nullable|integer|min:1',
-            'experience' => 'nullable|integer|min:1',
+            'gender' => 'required|integer|min:1',
+            'education' => 'required|integer|min:1',
+            'work_time' => 'required|integer|min:1',
+            'experience' => 'required|integer|min:1',
             'name_tm' => 'required|string|max:255',
             'name_en' => 'nullable|string|max:255',
             'salary' => 'nullable|numeric|min:0',
+            'description' => 'nullable|string|max:300',
+            'phone' => 'required|integer|between:61000000,65000000',
+            'email' => 'nullable|email:rfc,dns',
             'images' => 'nullable|array|min:0',
             'images.*' => 'nullable|image|mimes:jpg,jpeg|max:128|dimensions:width=1000,height=1000',
         ]);
-        $category = Category::findOrFail($request->brand);
-        $gender = $request->has('gender') ? AttributeValue::findOrFail($request->gender) : null;
-        $education = $request->has('education') ? AttributeValue::findOrFail($request->education) : null;
-        $work_time = $request->has('work_time') ? AttributeValue::findOrFail($request->work_time) : null;
-        $experience = $request->has('experience') ? AttributeValue::findOrFail($request->experience) : null;
+
+        $category = Category::findOrFail($request->category);
+        $gender = AttributeValue::findOrFail($request->gender);
+        $education = AttributeValue::findOrFail($request->education);
+        $work_time = AttributeValue::findOrFail($request->work_time);
+        $experience = AttributeValue::findOrFail($request->experience);
+
 
         $fullNameTm = $request->name_tm . ' '
             . $category->name_tm;
@@ -119,7 +124,11 @@ class JobController extends Controller
             'full_name_en' => isset($fullNameEn) ? $fullNameEn : null,
             'slug' => str()->slug($fullNameTm) . '-' . str()->random(10),
             'salary' => $request->salary,
-            'is_approved' => $request->user_id == 1,
+            'phone' => $request->phone,
+            'description' => $request->description,
+            'email' => $request->email,
+            'user_id' => auth()->user()->id,
+            'is_approved' => auth()->user()['is_admin'],
         ]);
 
         if ($request->has('images')) {
@@ -183,6 +192,7 @@ class JobController extends Controller
             'name_tm' => 'required|string|max:255',
             'name_en' => 'nullable|string|max:255',
             'salary' => 'required|numeric|min:0',
+            'is_approved' => ['boolean'],
             'images' => 'nullable|array|min:0',
             'images.*' => 'nullable|image|mimes:jpg,jpeg|max:260|dimensions:width=1000,height=1000',
         ]);
@@ -209,6 +219,7 @@ class JobController extends Controller
         $obj->full_name_en = isset($fullNameEn) ? $fullNameEn : null;
         $obj->slug = str()->slug($fullNameTm) . '-' . str()->random(10);
         $obj->salary = $request->salary;
+        $obj->is_approved = $request->is_approved ?: 0;
         $obj->update();
 
 

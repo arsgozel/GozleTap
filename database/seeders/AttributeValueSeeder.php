@@ -30,7 +30,7 @@ class AttributeValueSeeder extends Seeder
                 ['name_tm' => 'Orta bilimi', 'name_en' => null],
                 ['name_tm' => '-', 'name_en' => null],
             ]],
-            ['name_tm' => 'Iş güni', 'name_en' => 'Working-time', 'job_name' => true, 'values' => [
+            ['name_tm' => 'Iş güni', 'name_en' => 'Work_time', 'job_name' => true, 'values' => [
                 ['name_tm' => 'Doly iş güni', 'name_en' => null],
                 ['name_tm' => 'Doly däl iş güni', 'name_en' => null],
                 ['name_tm' => 'Smenaly', 'name_en' => null],
@@ -38,7 +38,7 @@ class AttributeValueSeeder extends Seeder
                 ['name_tm' => 'Wagtlaýyn usulda', 'name_en' => null],
                 ['name_tm' => '-', 'name_en' => null],
             ]],
-            ['name_tm' => 'Iş tejribesi', 'name_en' => 'Work-Experience', 'job_name' => true, 'values' => [
+            ['name_tm' => 'Iş tejribesi', 'name_en' => 'Experience', 'job_name' => true, 'values' => [
                 ['name_tm' => '1 ýyl', 'name_en' => null],
                 ['name_tm' => '1-2 ýyl', 'name_en' => null],
                 ['name_tm' => '2-3 ýyl', 'name_en' => null],
