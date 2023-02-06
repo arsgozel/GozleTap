@@ -51,19 +51,19 @@ class Job extends Model
 
     public function experience()
     {
-        return $this->belongsTo(AttributeValue::class, 'experience_id', 'id');
+        return $this->belongsTo(AttributeValue::class, 'experience_id');
     }
 
 
     public function work_time()
     {
-        return $this->belongsTo(AttributeValue::class, 'work_time_id', 'id');
+        return $this->belongsTo(AttributeValue::class, 'work_time_id');
     }
 
 
     public function education()
     {
-        return $this->belongsTo(AttributeValue::class, 'education_id', 'id');
+        return $this->belongsTo(AttributeValue::class, 'education_id');
     }
 
 

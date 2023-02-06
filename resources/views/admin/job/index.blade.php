@@ -7,6 +7,9 @@
         <div class="h4 mb-0">
             @lang('app.products')
         </div>
+        <div>
+            @include('admin.job.filter')
+        </div>
     </div>
 
     <div class="table-responsive">
@@ -83,27 +86,36 @@
                         </div>
                     </td>
                     <td>
-                        <div class="modal fade" id="delete{{ $obj->id }}" tabindex="-1" aria-labelledby="delete{{ $obj->id }}Label" aria-hidden="true">
-                            <div class="modal-dialog">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <div class="modal-title fs-5 fw-semibold" id="delete{{ $obj->id }}Label">
-                                            {{ $obj->getName() }}
+                        @if($obj->user->id == 1)
+                            <a href="{{ route('admin.jobs.edit', $obj->id) }}" class="btn btn-success btn-sm my-1">
+                                <i class="bi-pencil"></i>
+                            </a>
+                        @endif
+                            <button type="button" class="btn btn-secondary btn-sm my-1" data-bs-toggle="modal" data-bs-target="#delete{{ $obj->id }}">
+                                <i class="bi-trash"></i>
+                            </button>
+                            <div class="modal fade" id="delete{{ $obj->id }}" tabindex="-1" aria-labelledby="delete{{ $obj->id }}Label" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <div class="modal-title fs-5 fw-semibold" id="delete{{ $obj->id }}Label">
+                                                {{ $obj->getName() }}
+                                            </div>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                         </div>
-                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <form action="{{ route('admin.jobs.destroy', $obj->id) }}" method="post">
-                                            @method('DELETE')
-                                            @csrf
-                                            <button type="button" class="btn btn-light btn-sm" data-bs-dismiss="modal">@lang('app.close')</button>
-                                            <button type="submit" class="btn btn-secondary btn-sm"><i class="bi-trash"></i> @lang('app.delete')</button>
-                                        </form>
+                                        <div class="modal-footer">
+                                            <form action="{{ route('admin.jobs.destroy', $obj->id) }}" method="post">
+                                                @method('DELETE')
+                                                @csrf
+                                                <button type="button" class="btn btn-light btn-sm" data-bs-dismiss="modal">@lang('app.close')</button>
+                                                <button type="submit" class="btn btn-secondary btn-sm"><i class="bi-trash"></i> @lang('app.delete')</button>
+                                            </form>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    </td>
+                        </td>
+
                 </tr>
             @empty
                 <tr>

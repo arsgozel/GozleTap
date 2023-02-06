@@ -57,7 +57,7 @@ return [
     'receivedAt' => 'Gelen wagty',
     'createdAt' => 'Döredilen wagty',
     'updatedAt' => 'Üýtgedilen wagty',
-
+    'jobNotFound' =>'Iş tapylmady',
     'send' => 'Ugratmak',
     'add' => 'Goşmak',
     'added' => 'goşuldy',

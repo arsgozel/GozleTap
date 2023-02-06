@@ -76,7 +76,7 @@ return [
     'empty' => 'Empty',
     'delete' => 'Delete',
     'deleted' => 'deleted',
-
+    'jobNotFound' =>'Job is not found',
     'error' => 'Error',
 
 
