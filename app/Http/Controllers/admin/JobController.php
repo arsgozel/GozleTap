@@ -115,7 +115,7 @@ class JobController extends Controller
             'name_en' => 'nullable|string|max:255',
             'salary' => 'nullable|numeric|min:0',
             'description' => 'nullable|string|max:500',
-            'phone' => 'required|integer|between:61000000,65000000',
+            'phone' => 'required|integer|between:61000000,65999999',
             'email' => 'nullable|email:rfc,dns',
             'images' => 'nullable|array|min:0',
             'images.*' => 'nullable|image|mimes:jpg,jpeg|max:128|dimensions:width=1000,height=1000',

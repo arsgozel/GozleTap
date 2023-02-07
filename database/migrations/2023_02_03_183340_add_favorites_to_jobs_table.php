@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::table('jobs', function (Blueprint $table) {
-            $table->unsignedInteger('favorites')->nullable();
+            $table->unsignedInteger('favorites')->default(0);
         });
     }
 

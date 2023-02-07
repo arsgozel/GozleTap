@@ -100,11 +100,10 @@
                         </div>
                     </td>
                     <td>
-                        @if($obj->user->id == 1)
+                        <div>
                             <a href="{{ route('admin.jobs.edit', $obj->id) }}" class="btn btn-success btn-sm my-1">
                                 <i class="bi-pencil"></i>
                             </a>
-                        @endif
                             <button type="button" class="btn btn-secondary btn-sm my-1" data-bs-toggle="modal" data-bs-target="#delete{{ $obj->id }}">
                                 <i class="bi-trash"></i>
                             </button>
@@ -128,8 +127,8 @@
                                     </div>
                                 </div>
                             </div>
-                        </td>
-
+                        </div>
+                    </td>
                 </tr>
             @empty
                 <tr>

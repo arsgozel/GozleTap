@@ -54,7 +54,7 @@
                         @lang('app.email')
                     </label>
                     <div class="input-group mb-3">
-                        <input type="number" class="form-control @error('phone') is-invalid @enderror"
+                        <input type="email" class="form-control @error('email') is-invalid @enderror"
                                name="email" id="email" placeholder="name@gmail.com">
                     </div>
                     @error('email')
@@ -109,7 +109,7 @@
                         <span class="text-danger">*</span>
                     </label>
                     <div class="input-group mb-3">
-                        <input type="number" min='61000000' max="65000000" class="form-control @error('phone') is-invalid @enderror"
+                        <input type="number" min='61000000' max="65999999" class="form-control @error('phone') is-invalid @enderror"
                                name="phone" id="phone" value="61000000" required>
                     </div>
                     @error('phone')
