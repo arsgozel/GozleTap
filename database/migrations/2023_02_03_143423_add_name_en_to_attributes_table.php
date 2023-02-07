@@ -14,10 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('attributes', function (Blueprint $table) {
-            $table->id();
-            $table->string('name_tm');
-            $table->boolean('job_name')->default(0);
-            $table->unsignedInteger('sort_order')->default(1);
+            $table->string('name_en')->nullable();
         });
     }
 
@@ -28,6 +25,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('attributes');
+        Schema::dropIfExists('name_en');
     }
 };

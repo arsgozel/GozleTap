@@ -29,7 +29,6 @@ return new class extends Migration
             $table->string('email')->nullable();
             $table->unsignedDouble('salary')->default(0);
             $table->unsignedInteger('viewed')->default(0);
-            $table->text('description')->nullable();
             $table->unsignedInteger('random')->default(0);
             $table->integer('stock')->default(0);
             $table->timestamps();
