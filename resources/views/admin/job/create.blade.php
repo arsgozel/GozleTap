@@ -61,6 +61,15 @@
                     <div class="alert alert-danger mt-2">{{ $message }}</div>
                     @enderror
                 </div>
+                <div class="mb-3">
+                    <label for="description" class="form-label fw-semibold">
+                        @lang('app.description')
+                    </label>
+                    <div class="input-group mb-3">
+                        <input type="text" class="form-control @error('phone') is-invalid @enderror"
+                               name="description" id="description">
+                    </div>
+                </div>
             </div>
             <div class="col-10 col-sm-8 col-md-6 col-lg-4">
                 <div class="mb-3">
@@ -95,10 +104,10 @@
                     </label>
                     <div class="input-group mb-3">
                         <input type="number" min="0" class="form-control @error('salary') is-invalid @enderror"
-                               name="salary" id="salary" value="0" step="0.1" required>
+                               name="salary" id="salary" value="0" required>
                         <span class="input-group-text">TMT</span>
                     </div>
-                    @error('price')
+                    @error('salary')
                     <div class="alert alert-danger mt-2">{{ $message }}</div>
                     @enderror
                 </div>

@@ -213,6 +213,7 @@ class JobController extends Controller
             'name_tm' => 'required|string|max:255',
             'name_en' => 'nullable|string|max:255',
             'salary' => 'required|numeric|min:0',
+            'description' => 'nullable|string|max:500',
             'is_approved' => ['boolean'],
             'images' => 'nullable|array|min:0',
             'images.*' => 'nullable|image|mimes:jpg,jpeg|max:260|dimensions:width=1000,height=1000',
@@ -240,6 +241,7 @@ class JobController extends Controller
         $obj->full_name_en = isset($fullNameEn) ? $fullNameEn : null;
         $obj->slug = str()->slug($fullNameTm) . '-' . str()->random(10);
         $obj->salary = $request->salary;
+        $obj->description = $request->description;
         $obj->is_approved = $request->is_approved ?: 0;
         $obj->update();
 

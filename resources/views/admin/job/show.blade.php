@@ -44,11 +44,13 @@
                     <span class="fw-semibold">@lang('app.salary'): </span> {{ number_format($job->salary) }}
                     <small>TMT</small>
                 </div>
-                @foreach($job->attributeValues->sortBy('attribute.sort_order') as $attributeValues)
-                    <div class="fs-6">
-                       <span class="fw-semibold">{{ $attributeValues->attribute->getName() }}:</span> <span>{{ $attributeValues->getName() }}</span>
-                    </div>
-                @endforeach
+                <div>
+                    @foreach($job->attributeValues->sortBy('attribute.sort_order') as $attributeValues)
+                        <div class="fs-6">
+                            <span class="fw-semibold">{{ $attributeValues->attribute->getName() }}:</span> <span>{{ $attributeValues->getName() }}</span>
+                        </div>
+                    @endforeach
+                </div>
             </div>
             <div>
                 <div class="col-8">
