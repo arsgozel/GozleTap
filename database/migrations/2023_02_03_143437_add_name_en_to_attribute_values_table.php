@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('attribute_values', function (Blueprint $table) {
+        Schema::table('attribute_values', function (Blueprint $table) {
             $table->string('name_en')->nullable();
         });
     }
@@ -25,6 +25,8 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('name_en');
+        Schema::table('attribute_values', function (Blueprint $table) {
+            $table->dropColumn('name_en');
+        });
     }
 };
