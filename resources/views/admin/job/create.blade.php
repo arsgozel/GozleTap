@@ -33,6 +33,23 @@
                     @enderror
                 </div>
 
+                <div class="mb-3">
+                    <label for="category" class="form-label fw-semibold">
+                        Location
+                        <span class="text-danger">*</span>
+                    </label>
+                    <select class="form-select @error('location') is-invalid @enderror" name="location" id="location"
+                            required>
+                        <option value>-</option>
+                        @foreach($location as $location)
+                            <option value="{{ $location->id }}">{{ $location->getName() }}</option>
+                        @endforeach
+                    </select>
+                    @error('location')
+                    <div class="alert alert-danger mt-2">{{ $message }}</div>
+                    @enderror
+                </div>
+
 
                 <div class="mb-3">
                     <label for="image" class="form-label fw-semibold">

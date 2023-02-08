@@ -8,6 +8,7 @@ use App\Models\AttributeValue;
 use App\Models\Category;
 use App\Models\Job;
 use App\Models\JobImage;
+use App\Models\Location;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -23,9 +24,11 @@ class JobController extends Controller
             'users' => 'nullable|integer|min:1|exists:users,id',
         ]);
 
+
         $q = $request->q ?: null;
         $f_category = $request->category ?: null;
         $f_users = $request->users ?: null;
+
 
         $objs = Job::when($q, function ($query, $q) {
             return $query->where(function ($query) use ($q) {
@@ -48,11 +51,14 @@ class JobController extends Controller
             ->paginate(50)
             ->withQueryString();
 
+
         $categories = Category::whereNotNull('parent_id')->withCount('jobs')
             ->orderBy('sort_order')
             ->get();
+
         $users = User::orderBy('name')
             ->get();
+
 
         return view('admin.job.index')
             ->with([
@@ -63,14 +69,17 @@ class JobController extends Controller
             ]);
     }
 
+
     public function show($slug)
     {
         $job = Job::where('slug', $slug)
-            ->with('user', 'category', 'attributeValues.attribute')
+            ->with('user', 'category', 'attributeValues.attribute', 'location')
             ->firstOrFail();
 
         $category = Category::findOrFail($job->category_id);
+        $location = Location::findOrFail($job->location_id);
         $jobs = Job::where('category_id', $category->id)
+            ->where( 'location_id', $location->id)
             ->with('user')
             ->inRandomOrder()
             ->take(6)
@@ -80,6 +89,7 @@ class JobController extends Controller
             ->with([
                 'job' => $job,
                 'category' => $category,
+                'location' => $location,
                 'jobs' => $jobs,
             ]);
     }
@@ -87,8 +97,10 @@ class JobController extends Controller
 
     public function create()
     {
-        $categories = Category::whereNotNull('parent_id')
-            ->orderBy('sort_order')
+        $categories = Category::orderBy('sort_order')
+            ->get();
+
+        $location = Location::orderBy('sort_order')
             ->get();
 
         $attributes = Attribute::orderBy('sort_order')
@@ -98,6 +110,7 @@ class JobController extends Controller
         return view('admin.job.create')
             ->with([
                 'categories' => $categories,
+                'location' => $location,
                 'attributes' => $attributes,
             ]);
     }
@@ -117,6 +130,7 @@ class JobController extends Controller
             'description' => 'nullable|string|max:500',
             'phone' => 'required|integer|between:61000000,65999999',
             'email' => 'nullable|email:rfc,dns',
+            'location' => 'required|integer|min:1',
             'images' => 'nullable|array|min:0',
             'images.*' => 'nullable|image|mimes:jpg,jpeg|max:128|dimensions:width=1000,height=1000',
         ]);
@@ -126,7 +140,7 @@ class JobController extends Controller
         $education = AttributeValue::findOrFail($request->education);
         $work_time = AttributeValue::findOrFail($request->work_time);
         $experience = AttributeValue::findOrFail($request->experience);
-
+        $location = Location::findOrFail($request->location);
 
         $fullNameTm = $request->name_tm . ' '
             . $category->name_tm;
@@ -135,6 +149,7 @@ class JobController extends Controller
 
         $obj = Job::create([
             'category_id' => $category->id,
+            'location_id' => $location->id,
             'gender_id' => $gender->id ?: null,
             'education_id' => $education->id ?: null,
             'work_time_id' => $work_time->id ?: null,
@@ -182,8 +197,10 @@ class JobController extends Controller
     {
         $obj = Job::findOrFail($id);
 
-        $categories = Category::whereNotNull('parent_id')
-            ->orderBy('sort_order')
+        $categories = Category::orderBy('sort_order')
+            ->get();
+
+        $location = Location::orderBy('sort_order')
             ->get();
 
         $attributes = Attribute::orderBy('sort_order')
@@ -197,15 +214,18 @@ class JobController extends Controller
             ->with([
                 'obj' => $obj,
                 'categories' => $categories,
+                'location' => $location,
                 'attributes' => $attributes,
                 'images' => $images,
             ]);
     }
 
+
     public function update(Request $request, $id)
     {
         $request->validate([
             'category' => 'required|integer|min:1',
+            'location' => 'required|integer|min:1',
             'gender' => 'required|integer|min:1',
             'education' => 'required|integer|min:1',
             'work_time' => 'required|integer|min:1',
@@ -219,6 +239,7 @@ class JobController extends Controller
             'images.*' => 'nullable|image|mimes:jpg,jpeg|max:260|dimensions:width=1000,height=1000',
         ]);
         $category = Category::findOrFail($request->category);
+        $location = Location::findOrFail($request->location);
         $gender = AttributeValue::findOrFail($request->gender);
         $education =  AttributeValue::findOrFail($request->education);
         $work_time =  AttributeValue::findOrFail($request->work_time);
@@ -231,6 +252,7 @@ class JobController extends Controller
 
         $obj = Job::findOrFail($id);
         $obj->category_id = $category->id;
+        $obj->location_id = $location->id;
         $obj->gender_id = $gender->id;
         $obj->education_id = $education->id;
         $obj->work_time_id = $work_time->id;
@@ -271,12 +293,7 @@ class JobController extends Controller
             ]);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function destroy($id)
     {
         $images = JobImage::where('job_id', $id)

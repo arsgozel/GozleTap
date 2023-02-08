@@ -33,8 +33,13 @@
                         {{ $job->category->getName() }}
                     </a>
                 </div>
+                <div>
+                    <a href="{{ $job->location->slug }}" class="link-dark text-decoration-none fw-semibold">
+                        <span class="fw-semibold">@lang('app.location'): </span>{{ $job->location->getName() }}
+                    </a>
+                </div>
                 <div class="fs-6">
-                    <span class="fw-semibold">@lang('app.phone'): </span>{{ $job->phone }}
+                    <span class="fw-semibold">@lang('app.phone'):</span> +993{{ $job->phone }}
                 </div>
 
                 <div class="fs-6">

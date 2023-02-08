@@ -41,7 +41,7 @@ class JobFactory extends Factory
     public function definition()
     {
         $user = DB::table('users')->inRandomOrder()->first();
-        $category = Category::doesntHave('child')->inRandomOrder()->first();
+        $category = Category::inRandomOrder()->first();
         $location = Location::inRandomOrder()->first();
         $gender = AttributeValue::where('attribute_id', 1)->inRandomOrder()->first();
         $education = AttributeValue::where('attribute_id', 2)->inRandomOrder()->first();
@@ -72,11 +72,11 @@ class JobFactory extends Factory
             'updated_at' => fake()->dateTimeBetween('-2 month', 'now')->format('Y-m-d H:i:s'),
             'phone' => fake()->unique()->numberBetween(61000000, 65999999),
             'email' => fake()->unique()->safeEmail(),
-            'viewed' => rand(20, 200),
+            'viewed' => rand(100, 200),
             'stock' => rand(0, 10),
-            'favorites' => rand(0, 30),
+            'favorites' => rand(100, 200),
             'description' => fake()->text(rand(400, 500)),
-            'random' => rand(0, 79),
+            'random' => rand(0, 149),
         ];
     }
 }
