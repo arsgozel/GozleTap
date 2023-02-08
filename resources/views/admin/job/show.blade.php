@@ -49,22 +49,25 @@
                     <span class="fw-semibold">@lang('app.salary'): </span> {{ number_format($job->salary) }}
                     <small>TMT</small>
                 </div>
-                <div>
-                    @foreach($job->attributeValues->sortBy('attribute.sort_order') as $attributeValues)
-                        <div class="fs-6">
-                            <span class="fw-semibold">{{ $attributeValues->attribute->getName() }}:</span> <span>{{ $attributeValues->getName() }}</span>
-                        </div>
-                    @endforeach
+                <div class="fs-6">
+                    <span class="fw-semibold">@lang('app.gender'): </span>{{ $job->gender->getName() }}
+                </div>
+                <div class="fs-6">
+                    <span class="fw-semibold">@lang('app.experience'): </span>{{ $job->experience->getName() }}
+                </div>
+                <div class="fs-6">
+                    <span class="fw-semibold">@lang('app.education'): </span>{{ $job->education->getName() }}
+                </div>
+                <div class="fs-6">
+                    <span class="fw-semibold">@lang('app.work_time'): </span>{{ $job->work_time->getName() }}
                 </div>
             </div>
             <div>
                 <div class="col-8">
                     <div class="fw-semibold fs-5">@lang('app.description')</div>
-                    @if($job->description)
-                        <div class="mb-2 pt-3">
-                            {{ $job->description }}
-                        </div>
-                    @endif
+                    <div class="mb-2 pt-3">
+                        {{ $job->description }}
+                    </div>
                 </div>
             </div>
         </div>

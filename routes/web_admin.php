@@ -31,7 +31,7 @@ Route::middleware('auth')
     ->group(function () {
         Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
-        Route::resource('jobs', JobController::class)->middleware('can:jobs');
+        Route::resource('jobs', JobController::class);
         Route::resource('categories', CategoryController::class)->except(['show'])->middleware('can:categories');
         Route::resource('attributes', AttributeController::class)->except(['show'])->middleware('can:attributes');
         Route::resource('attributeValues', AttributeValueController::class)->except(['index', 'show'])->middleware('can:attributes');

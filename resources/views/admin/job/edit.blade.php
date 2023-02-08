@@ -155,7 +155,7 @@
                 </div>
             </div>
             <div class="mb-3 col-4">
-                <label for="name_tm" class="form-label fw-semibold">
+                <label for="description" class="form-label fw-semibold">
                     @lang('app.description')
                 </label>
                 <input type="text" class="form-control @error('description') is-invalid @enderror" name="description"
@@ -164,6 +164,7 @@
                 <div class="alert alert-danger mt-2">{{ $message }}</div>
                 @enderror
             </div>
+
             <div class="mb-3">
                 <label for="image" class="form-label fw-semibold">
                     @lang('app.image')

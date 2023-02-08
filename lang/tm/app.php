@@ -4,13 +4,12 @@ return [
     'app-name' => 'Gözle-Tap',
     'search' => 'Gözleg',
 
+    'gender' => 'Jynsy',
     'dashboard' => 'Panel',
     'user' => 'Ulanyjy',
     'users' => 'Ulanyjylar',
     'category' => 'Kategoriýa',
     'categories' => 'Kategoriýalar',
-    'jobs' => 'Iş',
-    'products' => 'Işler',
     'attribute' => 'Aýratynlyk',
     'attributes' => 'Aýratynlyklar',
     'value' => 'Görnüşi',
@@ -68,6 +67,10 @@ return [
     'close' => 'Çykmak',
     'delete' => 'Pozmak',
     'deleted' => 'pozuldy',
+    'experience' => 'Iş tejribesi',
+    'education' => 'Işgäriň bilimi',
+    'work_time' => 'Iş güni',
+
 
     'error' => 'Näsazlyk',
 

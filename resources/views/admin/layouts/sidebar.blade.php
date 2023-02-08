@@ -6,13 +6,11 @@
                     <i class="bi-speedometer text-danger me-1"></i> @lang('app.dashboard')
                 </a>
             </li>
-            @can('jobs')
-            <li class="nav-item">
-                <a class="nav-link link-dark" href="{{ route('admin.jobs.index') }}">
-                    <i class="bi-briefcase-fill text-danger me-1"></i> @lang('app.jobs')
-                </a>
-            </li>
-            @endcan
+                <li class="nav-item">
+                    <a class="nav-link link-dark" href="{{ route('admin.jobs.index') }}">
+                        <i class="bi-briefcase-fill text-danger me-1"></i> @lang('app.jobs')
+                    </a>
+                </li>
             @can('categories')
                 <li class="nav-item">
                     <a class="nav-link link-dark" href="{{ route('admin.categories.index') }}">

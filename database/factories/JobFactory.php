@@ -76,7 +76,6 @@ class JobFactory extends Factory
             'stock' => rand(0, 10),
             'favorites' => rand(100, 200),
             'description' => fake()->text(rand(400, 500)),
-            'random' => rand(0, 149),
         ];
     }
 }
