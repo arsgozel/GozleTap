@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Client;
 
 use App\Http\Controllers\Controller;
 use App\Models\Category;
-use App\Models\Loсation;
 use App\Models\Job;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -13,17 +12,29 @@ class HomeController extends Controller
 {
     public function index()
     {
-        $new = Job::where('created_at', '>=', Carbon::today()->subMonth()->toDateString())
-            ->with(['category:id,name_tm,name_en','location:id,name_tm,name_en', 'images'])
-            ->inRandomOrder()
-            ->take(4)
-            ->get([
-                'id', 'category_id', 'location_id', 'name_tm', 'slug', 'salary', 'created_at'
-            ]);
+        $topViewed = Job::with('user')
+            ->orderBy('viewed', 'desc')
+            ->orderBy('favorites', 'desc')
+            ->take(10)
+            ->get();
 
-        return view('client.home.index', [
-            'new' => $new,
-        ]);
+        $mostFavorites = Job::with('user')
+            ->orderBy('favorites', 'desc')
+            ->orderBy('viewed', 'desc')
+            ->take(10)
+            ->get();
+
+        $newJobs = Job::with('user')
+            ->orderBy('created_at', 'desc')
+            ->take(10)
+            ->get();
+
+        return view('client.home.index')
+            ->with([
+                'topViewed' => $topViewed,
+                'mostFavorites' => $mostFavorites,
+                'newJobs' => $newJobs,
+            ]);
     }
 
     public function language($key)
