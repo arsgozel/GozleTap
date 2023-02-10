@@ -45,6 +45,11 @@
                         {!! $obj->name_en ?: '<span class="text-success">' . $obj->name_tm . '</span>' !!}
                     </td>
                     <td>
+                        <a href="{{ route('admin.jobs.index', ['location' => $obj->id, 'stock' => 1]) }}" class="text-decoration-none">
+                            {{ $obj->jobs_count }} <i class="bi-box-arrow-up-right"></i>
+                        </a>
+                    </td>
+                    <td>
                         <a href="{{ route('admin.locations.edit', $obj->id) }}" class="btn btn-success btn-sm my-1">
                             <i class="bi-pencil"></i>
                         </a>

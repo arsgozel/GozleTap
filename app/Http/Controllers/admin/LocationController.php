@@ -12,6 +12,11 @@ class LocationController extends Controller
     {
         $objs = Location::orderBy('sort_order')
             ->with('parent')
+            ->withCount([
+                'jobs as jobs_count' => function ($query) {
+                    $query->where('stock', '>', 0);
+                }
+            ])
             ->get();
 
         return view('admin.location.index')

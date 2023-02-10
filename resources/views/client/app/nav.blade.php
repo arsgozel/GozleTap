@@ -9,6 +9,37 @@
                 <input class="form-control" type="search" name="q" value="{{ isset($q) ? $q : old('q') }}" placeholder="@lang('app.search')" aria-label="Search">
             </form>
             <ul class="navbar-nav me-auto">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">
+                        @lang('app.categories')
+                    </a>
+                    <ul class="dropdown-menu">
+                        @foreach($categories as $category)
+                            <li>
+                                <a class="dropdown-item" href="{{ route('jobs.index', ['c' => [$category->id]]) }}">
+                                    {{ $category->getName() }}
+                                    <span class="badge text-bg-info bg-opacity-10">{{ $category->jobs_count }}</span>
+                                </a>
+                            </li>
+                        @endforeach
+                    </ul>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">
+                        @lang('app.locations')
+                    </a>
+                    <ul class="dropdown-menu">
+                        @foreach($locations as $location)
+                            <li>
+                                <a class="dropdown-item" href="{{ route('jobs.index', ['l' => [$location->id]]) }}">
+                                    {{ $location->getName() }}
+                                    <span class="badge text-bg-info bg-opacity-10">{{ $location->jobs_count }}</span>
+                                </a>
+                            </li>
+                        @endforeach
+                    </ul>
+                </li>
+
                 <li class="nav-item">
                     <a class="nav-link link-light fs-6" href="{{ route('contacts.create') }}">
                         <i class="bi-envelope-plus"></i> @lang('app.contact')

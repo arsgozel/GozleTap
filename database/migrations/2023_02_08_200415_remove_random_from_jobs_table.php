@@ -26,7 +26,7 @@ return new class extends Migration
     public function down()
     {
         Schema::table('jobs', function (Blueprint $table) {
-            $table->dropColumn('random');
+            $table->integer('random')->default(0);
         });
     }
 };
