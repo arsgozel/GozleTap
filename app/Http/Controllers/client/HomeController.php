@@ -15,18 +15,18 @@ class HomeController extends Controller
         $topViewed = Job::with('user')
             ->orderBy('viewed', 'desc')
             ->orderBy('favorites', 'desc')
-            ->take(10)
+            ->take(12)
             ->get();
 
         $mostFavorites = Job::with('user')
             ->orderBy('favorites', 'desc')
             ->orderBy('viewed', 'desc')
-            ->take(10)
+            ->take(12)
             ->get();
 
         $newJobs = Job::with('user')
             ->orderBy('created_at', 'desc')
-            ->take(10)
+            ->take(12)
             ->get();
 
         return view('client.home.index')

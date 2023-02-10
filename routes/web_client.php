@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Client\Auth\AuthenticatedSessionController;
+use App\Http\Controllers\Client\Auth\RegisteredUserController;
 use App\Http\Controllers\Client\HomeController;
 use App\Http\Controllers\Client\LoginController;
 use App\Http\Controllers\Client\JobController;
@@ -7,6 +9,23 @@ use App\Http\Controllers\Client\ContactController;
 use App\Http\Controllers\Client\VerificationController;
 use Illuminate\Support\Facades\Route;
 use Spatie\Honeypot\ProtectAgainstSpam;
+
+Route::controller(RegisteredUserController::class)
+    ->middleware('guest')
+    ->group(function () {
+        Route::get('register', 'create')->name('register');
+        Route::post('register', 'store');
+    });
+
+Route::controller(AuthenticatedSessionController::class)
+    ->middleware('guest')
+    ->group(function () {
+        Route::get('login', 'create')->name('login');
+        Route::post('login', 'store');
+    });
+
+Route::post('logout', [AuthenticatedSessionController::class, 'destroy'])
+    ->middleware('auth')->name('logout');
 
 
 Route::controller(HomeController::class)

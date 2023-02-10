@@ -2,9 +2,6 @@
     <div class="fw-semibold">
         {{ $category->getName() }}
     </div>
-    <a href="{{ route('categories.show', $category->slug) }}" class="link-secondary">
-        <i class="bi-arrow-right-circle"></i>
-    </a>
 </div>
 <div class="splide py-4" role="group" id="splide-category-{{ $category->id }}">
     <div class="splide__track">

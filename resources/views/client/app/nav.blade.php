@@ -9,28 +9,34 @@
                 <input class="form-control" type="search" name="q" value="{{ isset($q) ? $q : old('q') }}" placeholder="@lang('app.search')" aria-label="Search">
             </form>
             <ul class="navbar-nav me-auto">
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">
-                        @lang('app.categories')
-                    </a>
-                </li>
-
                 <li class="nav-item">
                     <a class="nav-link link-light fs-6" href="{{ route('contacts.create') }}">
                         <i class="bi-envelope-plus"></i> @lang('app.contact')
                     </a>
                 </li>
-
-                @auth('customer_web')
+            </ul>
+            <ul class="navbar-nav ms-auto">
+                @auth
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('logout') }}"
                            onclick="event.preventDefault(); document.getElementById('logoutForm').submit();">
-                            <i class="bi-box-arrow-right"></i> {{ auth('customer_web')->user()['name'] }}
+                            <i class="bi-box-arrow-right"></i> {{ auth()->user()->name }}
                         </a>
                     </li>
                     <form id="logoutForm" action="{{ route('logout') }}" method="post" class="d-none">
                         @csrf
                     </form>
+                @else
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('register') }}">
+                            <i class="bi-person-plus"></i> @lang('app.register')
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('login') }}">
+                            <i class="bi-box-arrow-in-right"></i> @lang('app.login')
+                        </a>
+                    </li>
                 @endauth
                 @if(app()->getLocale() == 'en')
                     <li class="nav-item">
@@ -46,6 +52,7 @@
                     </li>
                 @endif
             </ul>
+
         </div>
     </div>
 </nav>

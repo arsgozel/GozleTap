@@ -3,13 +3,6 @@
     @lang('app.jobs')
 @endsection
 @section('content')
-    <div class="h4 mb-3">
-        <a href="{{ route('client.jobs.index') }}" class="text-decoration-none">
-            @lang('app.jobs')
-        </a>
-        <i class="bi-chevron-right small"></i>
-        @lang('app.show')
-    </div>
     <div class="container-xl py-4">
         <div class="row g-4 mb-4">
             <div class="col-10 col-sm-8 col-md-6 col-lg-4">
@@ -17,8 +10,17 @@
                     <img src="{{  $job->image ? Storage::url('jobs/' . $job->image) : asset('img/job.jpg') }}"
                          alt="{{ $job->getFullName() }}" class="img-fluid border rounded">
                 </div>
-                <div class="fs-5 mb-1 fw-semibold">
-                    <i class="bi-person-square text-secondary"></i> {{ $job->user->name }}
+                <div>
+                    <i class="bi bi-emoji-heart-eyes-fill text-warning"></i>{{ $job->viewed }}
+                </div>
+                <div>
+                    <i class="bi-heart-fill text-danger"></i> {{ $job->favorites }}
+                </div>
+                <div>
+                    <i class="bi bi-calendar-event-fill text-success"></i> {{ $job->created_at }}
+                </div>
+                <div>
+                    <i class="bi bi-calendar-event-fill text-danger"></i> {{ $job->updated_at }}
                 </div>
             </div>
             <div class="col">
@@ -68,5 +70,8 @@
                 </div>
             </div>
         </div>
+        @if($jobs->count() > 0)
+            @include('client.job.jobs')
+        @endif
     </div>
 @endsection

@@ -108,6 +108,18 @@ class JobController extends Controller
             ->with('user', 'category', 'attributeValues.attribute', 'location')
             ->firstOrFail();
 
+        if (Cookie::has('j_v')) {
+            $jobIds = explode(',', Cookie::get('p_v'));
+            if (!in_array($job->id, $jobIds)) {
+                $job->increment('viewed');
+                $jobIds[] = $job->id;
+                Cookie::queue('j_v', implode(',', $jobIds), 60 * 8);
+            }
+        } else {
+            $job->increment('viewed');
+            Cookie::queue('p_v', $job->id, 60 * 8);
+        };
+
         $category = Category::findOrFail($job->category_id);
         $location = Location::findOrFail($job->location_id);
         $jobs = Job::where('category_id', $category->id)
@@ -117,12 +129,36 @@ class JobController extends Controller
             ->take(6)
             ->get();
 
-        return view('admin.job.show')
+        return view('client.job.show')
             ->with([
                 'job' => $job,
                 'category' => $category,
                 'location' => $location,
                 'jobs' => $jobs,
             ]);
+    }
+
+    public function favorite($slug)
+    {
+        $job = Job::where('slug', $slug)
+            ->firstOrFail();
+
+        if (Cookie::has('store_favorites')) {
+            $cookies = explode(",", Cookie::get('store_favorites'));
+            if (in_array($job->id, $cookies)) {
+                $job->decrement('favorites');
+                $index = array_search($job->id, $cookies);
+                unset($cookies[$index]);
+            } else {
+                $job->increment('favorites');
+                $cookies[] = $job->id;
+            }
+            Cookie::queue('store_favorites', implode(",", $cookies), 60 * 24);
+        } else {
+            $job->increment('favorites');
+            Cookie::queue('store_favorites', $job->id, 60 * 24);
+        }
+
+        return redirect()->back();
     }
 }
