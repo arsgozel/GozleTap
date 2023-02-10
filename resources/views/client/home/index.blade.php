@@ -29,7 +29,7 @@
         <div class="row row-cols-1 row-cols-sm-1 row-cols-md-2 row-cols-xl-2 g-3 mb-4">
             @foreach($topViewed as $job)
                 <div class="col">
-                    @include('admin.app.job')
+                    @include('client.app.job')
                 </div>
             @endforeach
         </div>

@@ -5,10 +5,10 @@
     <div class="d-flex justify-content-between align-items-end mt-2">
         <div>
             <div class="small"> {{$job->created_at}} </div>
-            <div class="fs-6 fw-semibold">+993{{$job->phone}}</div>
-            <div class="fs-6 text-danger fw-semibold">
-                {{ number_format($job->salary) }}
-                <small>TMT</small>
+            <div class="fs-6 fw-semibold">Telefon: <span class="fw-normal">+993{{$job->phone}}</span></div>
+            <div class="fs-6 text-dark fw-semibold">
+                Aýlyk:
+                <span class="text-danger fw-normal">{{ number_format($job->salary) }} <small>TMT</small></span>
             </div>
         </div>
         <div class="small text-end">
