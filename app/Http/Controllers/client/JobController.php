@@ -42,6 +42,7 @@ class JobController extends Controller
                 $query->orWhere('slug', 'like', '%' . $q . '%');
             });
         })
+            ->where('is_approved', 1)
             ->when($f_users, function ($query, $f_users) {
                 $query->whereIn('user_id', $f_users);
             })
@@ -104,7 +105,7 @@ class JobController extends Controller
     public function show($slug)
     {
         $job = Job::where('slug', $slug)
-            ->with('user', 'category', 'attributeValues.attribute')
+            ->with('user', 'category', 'attributeValues.attribute', 'location')
             ->firstOrFail();
 
         $category = Category::findOrFail($job->category_id);
@@ -116,7 +117,7 @@ class JobController extends Controller
             ->take(6)
             ->get();
 
-        return view('client.job.show')
+        return view('admin.job.show')
             ->with([
                 'job' => $job,
                 'category' => $category,
