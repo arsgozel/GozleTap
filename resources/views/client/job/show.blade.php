@@ -11,10 +11,7 @@
                          alt="{{ $job->getFullName() }}" class="img-fluid border rounded">
                 </div>
                 <div>
-                    <i class="bi bi-emoji-heart-eyes-fill text-warning"></i>{{ $job->viewed }}
-                </div>
-                <div>
-                    <i class="bi-heart-fill text-danger"></i> {{ $job->favorites }}
+                    <i class="bi bi-eye-fill text-dark"></i>{{ $job->viewed }}
                 </div>
                 <div>
                     <i class="bi bi-calendar-event-fill text-success"></i> {{ $job->created_at }}
@@ -26,6 +23,9 @@
             <div class="col">
                 <div class="mb-2">
                     <span class="fs-4 fw-semibold">{{ $job->getFullName() }}</span>
+                    <a href="{{route('jobs.job.favorite', $job->slug)}}" class="btn btn-danger btn-sm text-decoration-none rounded-5">
+                        <i class="bi bi-bookmark-heart"></i> {{ $job->favorites }}
+                    </a>
                 </div>
                 <div class="mb-2">
                     <a href="{{ $job->category->slug }}" class="link-secondary text-decoration-none fw-semibold">

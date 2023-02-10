@@ -14,7 +14,7 @@
         </div>
         <div class="small text-end">
             <div>
-                <i class="bi bi-emoji-heart-eyes-fill text-warning"></i></i> {{ $job->viewed }}
+                <i class="bi bi-eye-fill text-dark"></i></i> {{ $job->viewed }}
             </div>
             <div>
                 <i class="bi-heart-fill text-danger"></i> {{ $job->favorites }}

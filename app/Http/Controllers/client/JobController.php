@@ -118,7 +118,7 @@ class JobController extends Controller
             }
         } else {
             $job->increment('viewed');
-            Cookie::queue('p_v', $job->id, 60 * 8);
+            Cookie::queue('j_v', $job->id, 60 * 8);
         };
 
         $category = Category::findOrFail($job->category_id);
@@ -137,5 +137,30 @@ class JobController extends Controller
                 'location' => $location,
                 'jobs' => $jobs,
             ]);
+    }
+
+
+    public function favorite($slug)
+    {
+        $job = Job::where('slug', $slug)
+            ->firstOrFail();
+
+        if (Cookie::has('store_favorites')) {
+            $cookies = explode(",", Cookie::get('store_favorites'));
+            if (in_array($job->id, $cookies)) {
+                $job->decrement('favorites');
+                $index = array_search($job->id, $cookies);
+                unset($cookies[$index]);
+            } else {
+                $job->increment('favorites');
+                $cookies[] = $job->id;
+            }
+            Cookie::queue('store_favorites', implode(",", $cookies), 60 * 24);
+        } else {
+            $job->increment('favorites');
+            Cookie::queue('store_favorites', $job->id, 60 * 24);
+        }
+
+        return redirect()->back();
     }
 }
