@@ -18,7 +18,8 @@
                 </div>
                 <div class="d-flex justify-content-between align-items-end mt-2">
                     <div>
-                        <div class="small"> {{$job->created_at}}</div>
+                        <div class="small"> {{ $job->created_at }}</div>
+                        <div class="fs-6 fw-semibold"><i class="bi bi-wallet-fill text-danger"></i> @lang('app.salary'): <span class="fw-normal">{{ $job->salary }} TMT</span></div>
                         <div class="fs-6 fw-semibold"><i class="bi bi-telephone-fill text-success"></i> Telefon: <span class="fw-normal">+993{{$job->phone}}</span></div>
                         <div class="fs-6 fw-semibold"><i class="bi bi-envelope-fill text-primary"></i> Email: <span>{{$job->email}}</span></div>
                     </div>

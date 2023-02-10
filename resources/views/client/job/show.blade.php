@@ -70,6 +70,7 @@
                 </div>
             </div>
         </div>
+
         @if($jobs->count() > 0)
             @include('client.job.jobs')
         @endif

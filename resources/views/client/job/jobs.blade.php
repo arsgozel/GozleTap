@@ -2,15 +2,18 @@
     <div class="fw-semibold">
         {{ $category->getName() }}
     </div>
+    <a href="{{ route('jobs.index', ['c' => [$category->slug]]) }}" class="link-secondary"></a>
 </div>
 <div class="splide py-4" role="group" id="splide-category-{{ $category->id }}">
     <div class="splide__track">
         <ul class="splide__list">
-            @foreach($jobs as $job)
-                <li class="splide__slide">
-                    @include('client.app.job')
-                </li>
-            @endforeach
+            <div class="row row-cols-1 row-cols-md-1 row-cols-xl-2 g-4 mb-4">
+                @foreach($jobs as $job)
+                    <li class="splide__slide">
+                        @include('client.app.job')
+                    </li>
+                @endforeach
+            </div>
         </ul>
     </div>
     <script>
@@ -23,10 +26,10 @@
                 interval: 3000,
                 gap: '1.5rem',
                 perMove: 1,
-                perPage: 4,
+                perPage: 2,
                 breakpoints: {
                     1399: {
-                        perPage: 3,
+                        perPage: 2,
                     },
                     991: {
                         perPage: 2,

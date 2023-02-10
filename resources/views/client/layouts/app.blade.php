@@ -14,5 +14,6 @@
 @include('client.app.alert')
 @yield('content')
 <script type="text/javascript" src="{{ asset('js/bootstrap.bundle.min.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/splide.min.js') }}"></script>
 </body>
 </html>
