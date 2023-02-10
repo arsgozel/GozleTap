@@ -62,7 +62,7 @@
                         @enderror
                     </div>
 
-                    <button type="submit" class="btn btn-primary w-100">
+                    <button type="submit" class="btn btn-success w-100">
                         <i class="bi-send"></i> @lang('app.send')
                     </button>
                 </form>

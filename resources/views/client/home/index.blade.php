@@ -12,7 +12,6 @@
             <div class="col-sm"><img src="{{ asset('img/job_search2.png') }}" class="img-fluid"></div>
         </div>
 
-
         <div class="h5 text-danger border-bottom pb-2 mb-3">
             <i class="bi bi-award-fill text-success"></i> New Jobs
         </div>
