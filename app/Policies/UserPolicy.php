@@ -65,6 +65,11 @@ class UserPolicy
         return $this->checkPermission($user, 9);
     }
 
+    public function dashboard(User $user)
+    {
+        return $this->checkPermission($user, 10);
+    }
+
 
     protected function checkPermission($user, $id)
     {

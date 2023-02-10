@@ -8,7 +8,7 @@
         <div>
             <div class="small"> {{$job->created_at}} </div>
             <div class="text-primary fw-semibold">
-                {{ number_format($job->salary) }}
+                Salary: {{ number_format($job->salary) }}
                 <small>TMT</small>
             </div>
         </div>

@@ -29,7 +29,7 @@ Route::middleware('auth')
     ->prefix('/admin')
     ->name('admin.')
     ->group(function () {
-        Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+        Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard')->middleware('can:categories');
 
         Route::resource('jobs', JobController::class);
         Route::resource('categories', CategoryController::class)->except(['show'])->middleware('can:categories');

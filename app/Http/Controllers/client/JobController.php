@@ -71,6 +71,7 @@ class JobController extends Controller
             'l' => $f_locations,
             'v' => $f_values,
         ]);
+
         // FILTER
         $users = User::orderBy('name')
             ->get();
@@ -136,29 +137,5 @@ class JobController extends Controller
                 'location' => $location,
                 'jobs' => $jobs,
             ]);
-    }
-
-    public function favorite($slug)
-    {
-        $job = Job::where('slug', $slug)
-            ->firstOrFail();
-
-        if (Cookie::has('store_favorites')) {
-            $cookies = explode(",", Cookie::get('store_favorites'));
-            if (in_array($job->id, $cookies)) {
-                $job->decrement('favorites');
-                $index = array_search($job->id, $cookies);
-                unset($cookies[$index]);
-            } else {
-                $job->increment('favorites');
-                $cookies[] = $job->id;
-            }
-            Cookie::queue('store_favorites', implode(",", $cookies), 60 * 24);
-        } else {
-            $job->increment('favorites');
-            Cookie::queue('store_favorites', $job->id, 60 * 24);
-        }
-
-        return redirect()->back();
     }
 }

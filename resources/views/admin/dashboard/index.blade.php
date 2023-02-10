@@ -21,6 +21,17 @@
     </div>
 
     <div class="h5 text-danger border-bottom pb-2 mb-3">
+        <i class="bi bi-award-fill text-success"></i> New Jobs
+    </div>
+    <div class="row row-cols-2 row-cols-sm-3 row-cols-md-4 row-cols-xl-5 g-3 mb-4">
+        @foreach($newJobs as $job)
+            <div class="col">
+                @include('admin.app.job')
+            </div>
+        @endforeach
+    </div>
+
+    <div class="h5 text-danger border-bottom pb-2 mb-3">
         <i class="bi bi-award-fill text-success"></i> Top Viewed Jobs
     </div>
     <div class="row row-cols-2 row-cols-sm-3 row-cols-md-4 row-cols-xl-5 g-3 mb-4">
@@ -36,17 +47,6 @@
     </div>
     <div class="row row-cols-2 row-cols-sm-3 row-cols-md-4 row-cols-xl-5 g-3 mb-4">
         @foreach($mostFavorites as $job)
-            <div class="col">
-                @include('admin.app.job')
-            </div>
-        @endforeach
-    </div>
-
-    <div class="h5 text-danger border-bottom pb-2 mb-3">
-        <i class="bi bi-award-fill text-success"></i> New Jobs
-    </div>
-    <div class="row row-cols-2 row-cols-sm-3 row-cols-md-4 row-cols-xl-5 g-3 mb-4">
-        @foreach($newJobs as $job)
             <div class="col">
                 @include('admin.app.job')
             </div>

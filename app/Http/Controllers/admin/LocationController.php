@@ -8,11 +8,6 @@ use Illuminate\Http\Request;
 
 class LocationController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
         $objs = Location::orderBy('sort_order')
@@ -25,11 +20,7 @@ class LocationController extends Controller
             ]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function create()
     {
         $parents = Location::whereNull('parent_id')
@@ -42,12 +33,7 @@ class LocationController extends Controller
             ]);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
-     */
+
     public function store(Request $request)
     {
         $request->validate([
@@ -70,12 +56,7 @@ class LocationController extends Controller
             ]);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function edit($id)
     {
         $obj = Location::findOrFail($id);
@@ -91,13 +72,7 @@ class LocationController extends Controller
             ]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request $request
-     * @param  int $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function update(Request $request, $id)
     {
         $request->validate([
@@ -122,12 +97,7 @@ class LocationController extends Controller
             ]);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function destroy($id)
     {
         $obj = Location::withCount('child', 'jobs')
