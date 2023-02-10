@@ -19,11 +19,13 @@ Route::controller(LoginController::class)
         Route::post('/a-login', 'store')->middleware(ProtectAgainstSpam::class);
     });
 
+
 Route::controller(LoginController::class)
     ->middleware('auth')
     ->group(function () {
         Route::post('/a-logout', 'destroy')->name('admin.logout');
     });
+
 
 Route::middleware('auth')
     ->prefix('/admin')
