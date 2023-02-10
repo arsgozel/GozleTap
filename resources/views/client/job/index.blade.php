@@ -9,7 +9,7 @@
                 @include('client.app.filter')
             </div>
             <div class="col">
-                <div class="row row-cols-1 row-cols-md-2 row-cols-xl-3 g-4 mb-4">
+                <div class="row row-cols-1 row-cols-md-1 row-cols-xl-1 g-4 mb-4">
                     @foreach($jobs as $job)
                         <div class="col">
                             @include('client.app.job')
