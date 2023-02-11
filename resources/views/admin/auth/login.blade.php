@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/bootstrap-icons.css') }}">
 </head>
-<body style="background-color: #007863">
+<body class="bg-success">
 @include('admin.layouts.alert')
 <div class="container-fluid">
     <div class="row justify-content-center align-items-center vh-100 py-3">

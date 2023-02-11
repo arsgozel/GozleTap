@@ -26,7 +26,7 @@
 
                     <div class="small text-end">
                         <div>
-                            <i class="bi bi-eye-fill text-dark"></i>{{ $job->viewed }}
+                            <i class="bi bi-eye-fill text-dark"></i> {{ $job->viewed }}
                         </div>
                         <div>
                             <i class="bi-heart-fill text-danger"></i> {{ $job->favorites }}

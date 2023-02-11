@@ -25,7 +25,7 @@
                 <th scope="col" width="20%">Full Name</th>
                 <th scope="col">Salary</th>
                 <th scope="col">Reactions</th>
-                <th scope="col"><i class="bi-gear-fill"></i></th>
+                @if(auth()->user()['is_admin'])<th scope="col"><i class="bi-gear-fill"></i></th>@endif
             </tr>
             </thead>
             <tbody>
@@ -110,9 +110,11 @@
                     </td>
                     <td>
                         <div>
+                            @if(auth()->user()['is_admin'])
                             <a href="{{ route('admin.jobs.edit', $obj->id) }}" class="btn btn-success btn-sm my-1">
                                 <i class="bi-pencil"></i>
                             </a>
+
                             <button type="button" class="btn btn-secondary btn-sm my-1" data-bs-toggle="modal" data-bs-target="#delete{{ $obj->id }}">
                                 <i class="bi-trash"></i>
                             </button>
@@ -136,6 +138,7 @@
                                     </div>
                                 </div>
                             </div>
+                            @endif
                         </div>
                     </td>
                 </tr>
