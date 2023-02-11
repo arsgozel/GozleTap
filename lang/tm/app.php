@@ -71,7 +71,6 @@ return [
     'education' => 'Işgäriň bilimi',
     'work_time' => 'Iş güni',
 
-
     'error' => 'Näsazlyk',
 
 
@@ -79,12 +78,8 @@ return [
     'customerInformation' => 'Müşderi maglumatlary',
     'additionalDetails' => 'Goşmaça maglumatlar',
 
-    'deliveryAddress' => 'Gowşurmaly salgysy',
-    'deliveryStatus' => 'Gowşuryş belligi',
-    'codeDelete' => '#:code pozuldy',
     'notes' => 'Bellikler',
     'cantUpdate' => 'Üýtgedip bolmaýar',
-    'productCode' => 'Haryt kody',
     'status' => 'Belgisi',
     'language' => 'Dil',
     'payment' => 'Töleg',
@@ -92,11 +87,6 @@ return [
     'code' => 'Kod',
     'trashed' => 'Zibilde',
     'statistics' => 'Statistika',
-
-    'totalIncome' => 'Umumy girdeji',
-    'thisMonth' => 'Şu aý',
-    'thisWeek' => 'Şu hepde',
-    'today' => 'Şugün',
 
     'yes' => 'Hawa',
     'no' => 'Ýok',

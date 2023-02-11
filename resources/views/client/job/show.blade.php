@@ -38,11 +38,16 @@
                     </a>
                 </div>
                 <div class="fs-6">
-                    <span class="fw-semibold">@lang('app.phone'):</span> +993{{ $job->phone }}
+                    <span class="fw-semibold">@lang('app.phone'): </span>
+                    <a href="tel:+993{{ $job->phone }}" class="text-decoration-none">
+                        +993 {{ $job->phone }}
+                    </a>
                 </div>
-
                 <div class="fs-6">
-                    <span class="fw-semibold">@lang('app.email'): </span>{{ $job->email }}
+                    <span class="fw-semibold">@lang('app.email'): </span>
+                    <a href="mailto:{{ $job->email }}" class="text-decoration-none">
+                        {{ $job->email }}
+                    </a>
                 </div>
                 <div class="fs-6">
                     <span class="fw-semibold">@lang('app.salary'): </span> {{ number_format($job->salary) }}

@@ -50,7 +50,6 @@
                     @enderror
                 </div>
 
-
                 <div class="mb-3">
                     <label for="image" class="form-label fw-semibold">
                         @lang('app.image')
@@ -78,6 +77,7 @@
                     <div class="alert alert-danger mt-2">{{ $message }}</div>
                     @enderror
                 </div>
+
                 <div class="mb-3">
                     <label for="description" class="form-label fw-semibold">
                         @lang('app.description')
@@ -88,6 +88,7 @@
                     </div>
                 </div>
             </div>
+
             <div class="col-10 col-sm-8 col-md-6 col-lg-4">
                 <div class="mb-3">
                     <label for="name_tm" class="form-label fw-semibold">
@@ -142,10 +143,9 @@
                     <div class="alert alert-danger mt-2">{{ $message }}</div>
                     @enderror
                 </div>
-
             </div>
-            <div class="col-10 col-sm-8 col-md-6 col-lg-4">
 
+            <div class="col-10 col-sm-8 col-md-6 col-lg-4">
                 @foreach($attributes as $attribute)
                     <div class="mb-3">
                         <label for="{{ strtolower($attribute->name_en) }}" class="form-label fw-semibold">

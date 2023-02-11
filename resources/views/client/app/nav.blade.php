@@ -57,6 +57,11 @@
                     <form id="logoutForm" action="{{ route('logout') }}" method="post" class="d-none">
                         @csrf
                     </form>
+                    <li>
+                        <a class="nav-link px-3" href="{{ route('admin.dashboard') }}" target="_blank">
+                            <i class="bi-box-arrow-up-right"></i>
+                        </a>
+                    </li>
                 @else
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('register') }}">

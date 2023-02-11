@@ -26,6 +26,7 @@
                 <th scope="col"><i class="bi-gear-fill"></i></th>
             </tr>
             </thead>
+
             <tbody>
             @foreach($objs->sortBy('sort_order')->sortBy('parent.sort_order') as $obj)
                 <tr>
@@ -54,6 +55,7 @@
                         <a href="{{ route('admin.categories.edit', $obj->id) }}" class="btn btn-success btn-sm my-1">
                             <i class="bi-pencil"></i>
                         </a>
+
                         <button type="button" class="btn btn-secondary btn-sm my-1" data-bs-toggle="modal" data-bs-target="#delete{{ $obj->id }}">
                             <i class="bi-trash"></i>
                         </button>
