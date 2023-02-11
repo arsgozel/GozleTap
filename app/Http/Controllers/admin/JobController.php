@@ -21,12 +21,14 @@ class JobController extends Controller
         $request->validate([
             'q' => 'nullable|string|max:255',
             'category' => 'nullable|integer|min:1|exists:categories,id',
+            'location' => 'nullable|integer|min:1|exists:locations,id',
             'users' => 'nullable|integer|min:1|exists:users,id',
         ]);
 
 
         $q = $request->q ?: null;
         $f_category = $request->category ?: null;
+        $f_location = $request->location ?: null;
         $f_users = $request->users ?: null;
 
 
@@ -43,16 +45,23 @@ class JobController extends Controller
             ->when($f_category, function ($query, $f_category) {
                 $query->where('category_id', $f_category);
             })
+            ->when($f_location, function ($query, $f_location) {
+                $query->where('location_id', $f_location);
+            })
             ->when($f_users, function ($query, $f_users) {
                 $query->where('user_id', $f_users);
             })
-            ->with(['user','category.parent'])
+            ->with(['user','category.parent', 'location.parent'])
             ->orderBy('id','desc')
             ->paginate(50)
             ->withQueryString();
 
 
         $categories = Category::whereNotNull('parent_id')->withCount('jobs')
+            ->orderBy('sort_order')
+            ->get();
+
+        $locations = Location::whereNotNull('parent_id')->withCount('jobs')
             ->orderBy('sort_order')
             ->get();
 
@@ -65,6 +74,8 @@ class JobController extends Controller
                 'objs' => $objs,
                 'categories' => $categories,
                 'f_category' => $f_category,
+                'locations' => $locations,
+                'f_location' => $f_location,
                 'user' => $users,
             ]);
     }

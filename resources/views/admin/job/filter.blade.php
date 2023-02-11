@@ -19,6 +19,20 @@
     </div>
 
     <div class="col">
+        <select class="form-select form-select-sm" name="location" id="location" size="1" onchange="$('form#productFilter').submit();">
+            <option value>@lang('app.locations')</option>
+            @foreach($locations as $location)
+                <option value="{{ $location->id }}" {{ $location->id == $f_location ? 'selected' : '' }}>
+                    {{ $location->getName() . ' (' . $location->jobs_count . ')' }}
+                </option>
+            @endforeach
+        </select>
+        @error('location')
+        <div class="alert alert-danger mt-2">{{ $message }}</div>
+        @enderror
+    </div>
+
+    <div class="col">
         <input class="form-control form-control-sm" type="search" name="q" placeholder="{{ @trans('app.search') }}">
     </div>
     <div class="col-auto">
