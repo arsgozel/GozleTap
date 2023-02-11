@@ -8,7 +8,7 @@
         </div>
         <div class="col p-2">
             <div class="d-flex flex-column h-100">
-                <div class="fs-5 fw-semibold mb-auto">
+                <div class="fs-6 fw-semibold mb-auto">
                         {{ $job->getFullName() }}
                     <span class="fs-6">
                             <a href="{{ route('jobs.show', $job->slug) }}" class="link-secondary">

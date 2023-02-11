@@ -13,6 +13,7 @@
 @include('client.app.nav')
 @include('client.app.alert')
 @yield('content')
+@include('client.app.footer')
 <script type="text/javascript" src="{{ asset('js/bootstrap.bundle.min.js') }}"></script>
 <script type="text/javascript" src="{{ asset('js/splide.min.js') }}"></script>
 </body>
