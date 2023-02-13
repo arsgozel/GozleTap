@@ -14,17 +14,20 @@ class HomeController extends Controller
         $topViewed = Job::with('user')
             ->orderBy('viewed', 'desc')
             ->orderBy('favorites', 'desc')
+            ->where('is_approved', 1)
             ->take(8)
             ->get();
 
         $mostFavorites = Job::with('user')
             ->orderBy('favorites', 'desc')
             ->orderBy('viewed', 'desc')
+            ->where('is_approved', 1)
             ->take(8)
             ->get();
 
         $newJobs = Job::with('user')
             ->orderBy('created_at', 'desc')
+            ->where('is_approved', 1)
             ->take(8)
             ->get();
 
