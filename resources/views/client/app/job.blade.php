@@ -2,7 +2,7 @@
     <div class="row g-0">
         <div class="col-3">
             <div class="d-flex">
-                <img src="{{  $job->image ? Storage::url('jobs/sm/' . $job->image) : asset('img/sm/job.jpg') }}"
+                <img src="{{  $job->image ? Storage::url('jobs/sm/' . $job->image) : asset('img/sm/vacancy.jpg') }}"
                      alt="{{ $job->getFullName() }}" class="img-fluid rounded-start">
             </div>
         </div>
@@ -21,7 +21,6 @@
                         <div class="small"> {{ $job->created_at }}</div>
                         <div class="small fw-semibold"><i class="bi bi-wallet-fill text-danger"></i> @lang('app.salary'): <span class="fw-normal">{{ $job->salary }} TMT</span></div>
                         <div class="small fw-semibold"><i class="bi bi-telephone-fill text-success"></i> @lang('app.phone'): <span class="fw-normal">+993{{ $job->phone }}</span></div>
-                        <div class="small fw-semibold"><i class="bi bi-envelope-fill text-primary"></i> @lang('app.email'): <span class="fw-normal">{{ $job->email }}</span></div>
                     </div>
 
                     <div class="small text-end">

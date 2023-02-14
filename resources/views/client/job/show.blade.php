@@ -7,11 +7,11 @@
         <div class="row g-4 mb-4">
             <div class="col-10 col-sm-8 col-md-6 col-lg-4">
                 <div class="d-flex mb-2">
-                    <img src="{{  $job->image ? Storage::url('jobs/' . $job->image) : asset('img/job.jpg') }}"
+                    <img src="{{  $job->image ? Storage::url('jobs/' . $job->image) : asset('img/vacancy.jpg') }}"
                          alt="{{ $job->getFullName() }}" class="img-fluid border rounded">
                 </div>
                 <div>
-                    <i class="bi bi-eye-fill text-dark"></i>{{ $job->viewed }}
+                    <i class="bi bi-eye-fill text-dark"></i> {{ $job->viewed }}
                 </div>
                 <div>
                     <i class="bi bi-calendar-event-fill text-success"></i> {{ $job->created_at }}
