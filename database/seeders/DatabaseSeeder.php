@@ -20,7 +20,7 @@ class DatabaseSeeder extends Seeder
         ]);
 
         Contact::factory()->count(100)->create();
-        Job::factory()->count(800)->create();
+        Job::factory()->count(2000)->create();
 
     }
 }
