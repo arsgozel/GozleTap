@@ -7,13 +7,11 @@
 <div class="splide py-4" role="group" id="splide-category-{{ $category->id }}">
     <div class="splide__track">
         <ul class="splide__list">
-            <div class="row row-cols-1 row-cols-md-1 row-cols-xl-2 g-4 mb-4">
-                @foreach($jobs as $job)
-                    <li class="splide__slide">
-                        @include('client.app.job')
-                    </li>
-                @endforeach
-            </div>
+            @foreach($jobs as $job)
+                <li class="splide__slide">
+                    @include('client.app.job')
+                </li>
+            @endforeach
         </ul>
     </div>
     <script>
@@ -26,10 +24,10 @@
                 interval: 3000,
                 gap: '1.5rem',
                 perMove: 1,
-                perPage: 2,
+                perPage: 4,
                 breakpoints: {
                     1399: {
-                        perPage: 2,
+                        perPage: 3,
                     },
                     991: {
                         perPage: 2,

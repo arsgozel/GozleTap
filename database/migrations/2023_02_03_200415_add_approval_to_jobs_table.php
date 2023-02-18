@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::table('jobs', function (Blueprint $table) {
-            $table->boolean('is_approved')->default(0);
+            $table->unsignedTinyInteger('is_approved')->default(0);
         });
     }
 

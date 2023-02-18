@@ -65,6 +65,6 @@
         </div>
     </div>
 
-    <button type="submit" class="btn btn-primary btn-sm w-100 my-2">Filter</button>
+    <button type="submit" class="btn btn-success btn-sm w-100 my-2">Filter</button>
     <a href="{{ url()->current() }}" class="btn btn-light btn-sm w-100">Clear</a>
 </form>

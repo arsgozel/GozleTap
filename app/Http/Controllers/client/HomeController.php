@@ -11,6 +11,10 @@ class HomeController extends Controller
 {
     public function index()
     {
+        $modals = [
+            ['name' => 'jobs', 'total' => Job::count()],
+        ];
+
         $topViewed = Job::with('user')
             ->orderBy('viewed', 'desc')
             ->orderBy('favorites', 'desc')
@@ -33,6 +37,7 @@ class HomeController extends Controller
 
         return view('client.home.index')
             ->with([
+                'modals' => $modals,
                 'topViewed' => $topViewed,
                 'mostFavorites' => $mostFavorites,
                 'newJobs' => $newJobs,

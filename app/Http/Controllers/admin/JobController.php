@@ -245,7 +245,7 @@ class JobController extends Controller
             'name_en' => 'nullable|string|max:255',
             'salary' => 'required|numeric|min:0',
             'description' => 'nullable|string|max:500',
-            'is_approved' => ['boolean'],
+            'is_approved' => 'integer',
             'images' => 'nullable|array|min:0',
             'images.*' => 'nullable|image|mimes:jpg,jpeg|max:260|dimensions:width=1000,height=1000',
         ]);

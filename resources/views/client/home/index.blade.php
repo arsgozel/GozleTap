@@ -6,8 +6,13 @@
     <div class="container-xl p-0">
         <div class="row align-items-center">
             <div class="col-sm">
-                <div class="display-1 text-center text-danger fw-semibold">@lang('app.app-name')</div>
-                <div class="fs-3 text-center">Find Your Dream Job</div>
+                <div class="display-1 text-center text-danger fw-bold">@lang('app.app-name')</div>
+                <div class="fs-3 text-center mb-3">Find Your <span class="text-success">Dream Job</span></div>
+                <div class="d-flex align-items-center justify-content-center mb-3">
+                    <form action="{{ route('jobs.index') }}" class="px-2 w-50" role="search">
+                        <input class="form-control rounded-5 border-success" type="search" name="q" value="{{ isset($q) ? $q : old('q') }}" placeholder="@lang('app.search')..." aria-label="Search">
+                    </form>
+                </div>
             </div>
             <div class="col-sm"><img src="{{ asset('img/job_search2.png') }}" class="img-fluid"></div>
         </div>
@@ -44,5 +49,4 @@
             @endforeach
         </div>
     </div>
-
 @endsection

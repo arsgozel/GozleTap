@@ -8,6 +8,7 @@
     <link rel="icon" href="{{ asset('img/job_search2.png') }}">
     <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/bootstrap-icons.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/splide.min.css') }}">
 </head>
 <body class="bg-light">
 @include('client.app.nav')
